@@ -15,17 +15,107 @@
 
 
 <title>Aloop Offroad</title>
-<%= stylesheet_link_tag    'application', media: 'all' %>
-<%= javascript_include_tag 'application' %>
 
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-<link rel="manifest" href="/manifest.json">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<meta name="theme-color" content="#ffffff">
 
-<link href="https://fonts.googleapis.com/css?family=Lora:400,700|Roboto:400,900" rel="stylesheet">
+<style>
+   #main-nav {
+   	position: absolute;
+   	margin-top: 50px;
+   	width: 100%;
+   }
+
+   .main-nav-background {
+   	background-color: transparent;
+   	height: 180px;
+   }
+
+   #main-nav.navbar-default {
+       font-size: 18px;
+       font-weight: 900;
+       text-transform: uppercase;
+       font-family: $font-sans;
+       border-top: solid 10px rgba(0, 0, 0, 0.7);
+       border-bottom: solid 10px rgba(0, 0, 0, 0.7);
+       background-clip: content-box;
+       padding: 5px 0 5px 0;
+       background-color: rgba(0, 0, 0, 0.7);
+   }
+
+   #main-nav.navbar-default .navbar-brand:hover {
+       background-color: transparent;
+   }
+
+   #main-nav .inner {
+   	padding: 0 10px 0 10px;
+   }
+
+   #main-nav.navbar-default .navbar-nav>li>a:hover {
+       border-top: solid 10px rgba(255,0,0, 0.3);
+       border-bottom: solid 10px rgba(255,0,0, 0.3);
+   }
+
+   #main-nav.navbar-default .navbar-nav>li>a {
+       color: white;
+       margin-top: -15px;
+       margin-bottom: -15px;
+       height: 80px;
+       text-align: center;
+       line-height: 50px;
+       border-top: solid 10px transparent;
+       border-bottom: solid 10px transparent;
+       background-clip: content-box;
+       padding: 5px 0 5px 0;
+       background-color: transparent;
+   }
+
+   @media screen and (max-width: 768px) {
+   	#main-nav.navbar-default .navbar-nav>li>a {
+   	    margin-top: -15px;
+   	    margin-bottom: -15px;
+   	    height: auto;
+   	    width: 100%;
+   	    text-align: center;
+   	    line-height: 50px;
+   	    border-top: solid 10px transparent;
+   	    border-bottom: solid 10px transparent;
+   	    background-clip: content-box;
+   	    padding: 5px 0 5px 0;
+   	    background-color: transparent;
+   	}
+   }
+
+   #main-nav.navbar-default .navbar-nav>li>a:hover,
+   #main-nav.navbar-default .navbar-nav>li>a:focus {
+       background-color: rgba(255,0,0, 0.3);
+       border-top: solid 10px rgba(255,0,0, 0.3);
+       border-bottom: solid 10px rgba(255,0,0, 0.3);
+   }
+
+   #main-nav.navbar-default .navbar-nav>.active>a,
+   #main-nav.navbar-default .navbar-nav>.active>a:hover,
+   #main-nav.navbar-default .navbar-nav>.active>a:focus {
+       color: rgba(85, 85, 85, 1);
+       background-color: rgba(231, 231, 231, 1);
+   }
+   #main-nav.navbar-default .navbar-toggle {
+       border-color: white;
+   }
+   #main-nav.navbar-default .navbar-toggle:hover,
+   #main-nav.navbar-default .navbar-toggle:focus {
+       background-color: transparent;
+       border-color: #ec3223;
+   }
+   #main-nav.navbar-default .navbar-toggle .icon-bar {
+       background-color: white;
+   }
+   #main-nav.navbar-default .navbar-toggle:hover .icon-bar,
+   #main-nav.navbar-default .navbar-toggle:focus .icon-bar {
+       background-color: #ec3223;
+   }
+
+</style>
+
+
 
 
 <%= yield :head %>
