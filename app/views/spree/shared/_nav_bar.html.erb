@@ -1,5 +1,15 @@
 <nav class="navbar" id="top-nav-bar">
+  <ul id="nav-bar" class="nav navbar-nav navbar-left" data-hook>
+    <li id="home-link" data-hook><%= link_to "Store Home", spree.root_path %></li>
+  </ul>
   <ul id="nav-bar" class="nav navbar-nav navbar-right" data-hook>
+    <li id="link-to-cart" data-hook>
+      <noscript>
+        <%= link_to_cart %>
+      </noscript>
+      &nbsp;
+    </li>
+    <script>Spree.fetch_cart()</script>
     <li id="search-bar" data-hook>
       <%#= render partial: 'spree/shared/search' %>
     </li>

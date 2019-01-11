@@ -1206,33 +1206,7 @@
 
 
 
- /*
-==============================================
-Spree
-==============================================
-*/
 
-#spree-header {
-  background-color: $color-blue;
-}
-
-#spree-header #header {
-  padding: 0px;
-}
-
-.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
-  background-color: $color-blue;
-  border-color: $color-blue;
-}
-
-.pagination > li > a, .pagination > li > span {
-  color: $color-blue;
-}
-
-.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
-  background-color: $color-blue;
-  border-color: $color-blue;
-}
 
 
 
