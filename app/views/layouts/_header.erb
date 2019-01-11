@@ -1,0 +1,72 @@
+
+
+<!-- MENU GOES HERE -->
+<div id="main-nav" class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <%= link_to root_path, class: "navbar-brand" do %>
+            <%= image_tag "masterlogoSQ.png", style: "margin: -50px 0 0 20px; height: 120px" %>
+          <% end %>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse navbar-menubuilder">
+            <ul class="nav navbar-nav navbar-left">
+                <li><%= link_to main_app.home_kits_path do %>
+                  <p class="inner">Kits</p>
+                <% end %></li>
+
+                <li><%= link_to main_app.photos_path do %>
+                  <p class="inner">Gallery</p>
+                <% end %></li>
+
+                <li><%= link_to main_app.spree_path do %>
+                  <p class="inner">Store</p>
+                <% end %></li>
+
+                <li><%= link_to main_app.home_info_path do %>
+                  <p class="inner">Info</p>
+                <% end %></li>
+
+                <li><%= link_to main_app.home_export_path do %>
+                  <p class="inner">Export</p>
+                <% end %></li>
+
+                <% if current_spree_user && current_spree_user.admin? %>
+
+                  <li><%= link_to main_app.contacts_path do %>
+                    <p class="inner">Messages</p>
+                  <% end %></li>
+
+                <% else %>
+
+                  <li><%= link_to main_app.new_contact_path do %>
+                    <p class="inner">Contact</p>
+                  <% end %></li>
+
+                <% end %>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="main-nav-background"></div>
+
+<div class="flash-notice-area">
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:notice] %>
+    </div>
+  <% elsif flash.now[:alert] %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash.now[:alert] %>
+    </div>
+  <% elsif flash[:alert] %>
+    <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+</div> <!-- flash notice area -->

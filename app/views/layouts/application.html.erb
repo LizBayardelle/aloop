@@ -1,15 +1,85 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ALOOP</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Aloop Offroad</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
 
-  <body>
-    <%= yield %>
-  </body>
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Roboto:400,900" rel="stylesheet">
+</head>
+
+<body>
+
+<%= image_tag "metal_footer_background.jpg", class: "bg" %>
+
+
+<%= render "layouts/header" %>
+
+<%= yield %>
+
+<footer class="footer top-shadow-inset">
+  <div class="row text-center footer-stripe">
+    <h1>Aloop Offroad</h1>
+    <h4>Unique Performance Prducts</h4>
+  </div> <!-- title -->
+
+  <div class="row tri-row">
+    <div class="col-sm-4">
+      <h3 class="text-center">Questions</h3>
+      <p>If you really, really have to talk to a human being, then call Pete on his cell phone (<a href="tel:1-303-550-2582">+1 303-550-2582</a>) and leave a message.</p>
+      <p>(He's the closest thing to a human being that we have here).</p>
+      <p>Pete will get back to you as soon as possible, usually on the same day you call.</p>
+    </div> <!-- triple thingy one -->
+
+    <div class="row visible-xs">
+      <hr class="col-xs-6 col-xs-push-3">
+    </div>
+
+    <div class="col-sm-4">
+      <h3 class="text-center">Contact Aloop</h3>
+      <p>We might not keep regular office hours, but your business is still very important to us.</p>
+      <p>You can contact us by postal service, <a href="mailto:sales@aloop.com">email</a>, or on our <%= link_to "contact us", new_contact_path %> page. We will attempt to respond to all inquiries within 24 hours.</p>
+      <p>We are located in the USA Mountain Time Zone (GMT-7hrs).</p>
+    </div> <!-- triple thingy one -->
+
+    <div class="row visible-xs">
+      <hr class="col-xs-6 col-xs-push-3">
+    </div>
+
+    <div class="col-sm-4">
+      <h3 class="text-center">Overseas Orders</h3>
+      <p>Overseas orders are no problem!</p>
+      <p>We've sold thousands of our Aloop 4SMX kits to customers in over 40 countries! Most shipments are sent via US Mail Global Express Mail, and can arrive in under 1 week, no matter where in the world you live.</p>
+    </div> <!-- triple thingy one -->
+  </div> <!-- triple thingy row -->
+
+  <div class="row text-center footer-bottom">
+    <p><a href="mailto:sales@aloop.com">sales@aloop.com</a>
+    <span class="hidden-xs"> &nbsp;|&nbsp; </span><br class="visible-xs">
+    PO Box 412, Sedalia, CO 80135, USA
+    <span class="hidden-xs"> &nbsp;|&nbsp; </span><br class="visible-xs">
+    <a href="www.aloop.com">www.aloop.com</a></p>
+
+    <a href="http://www.linchpinindustries.com" target="_blank" style="text-decoration: none">
+      <div class="text-center">
+        <p style="margin-bottom: 0; color: white; font-weight: 200">Website by
+        <%= image_tag "lpi_logo_rect.png", style: "height: 30px; margin-left: 5px" %></p>
+      </div> <!--lpi -->
+    </a>
+  </div> <!-- title -->
+
+
+</footer>
+
+</body>
 </html>

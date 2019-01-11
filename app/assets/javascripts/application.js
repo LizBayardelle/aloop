@@ -13,4 +13,15 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery
+//= require autonumeric
+//= require bootstrap-sprockets
+//= require jquery_ujs
+//= require magnific-popup
 //= require_tree .
+
+
+// ALERT FADE AWAY
+$(document).on("ready page:load", function() {
+  setTimeout(function() { $(".alert").fadeOut(); }, 5000);
+});
