@@ -5,6 +5,7 @@ class PhotosController < ApplicationController
   # GET /photos
   def index
     @photos = Photo.where(approved: true)
+    @unapproved_photos = Photo.where(approved: false)
     @kit_1_photos = Photo.where(kit: "kit_1", approved: true)
     @kit_2_photos = Photo.where(kit: "kit_2", approved: true)
     @kit_3_photos = Photo.where(kit: "kit_3", approved: true)
