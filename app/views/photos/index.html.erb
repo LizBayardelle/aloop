@@ -148,10 +148,7 @@
                         <%= image_tag url_for(photo.image), class: "popup-picture", style: "margin-bottom: 30px" %>
                       <% end %>
                       <p><%= photo.comments %></p>
-                      <% if !photo.user.admin %>
-                           <h3><strong>Submitted by: </strong><%= photo.user.first_name %></h3>
-                      <% end %>
-                      <% if current_user && current_user.admin %>
+                      <% if current_spree_user && current_spree_user.admin? %>
                           <div class="row">
                             <div class="col-xs-4 col-sm-2 col-sm-push-3">
                               <%= link_to edit_photo_path(photo) do %>
