@@ -21,6 +21,8 @@ gem 'devise'
 gem 'spree', '~> 3.6.4'
 gem 'spree_auth_devise', '~> 3.3'
 gem 'spree_gateway', '~> 3.3'
+gem 'spree_mail_settings', github: 'spree-contrib/spree_mail_settings'
+
 
 gem 'ckeditor'
 gem 'ionicons-rails'
