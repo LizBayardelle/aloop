@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
   before_action :admin_only, except: [:show, :new, :create]
+  invisible_captcha only: [:create, :update], honeypot: :subtitle
 
   # GET /contacts
   def index

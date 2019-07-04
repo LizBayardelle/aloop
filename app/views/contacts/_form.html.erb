@@ -2,6 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs text-center">
+    <%= f.invisible_captcha :subtitle %>
     <div class="form-group col-sm-6">
       <%= f.label :first_name %><br>
       <%# if current_spree_user %>

@@ -49,6 +49,7 @@ gem 'dotenv-rails'
 gem 'acts_as_list'
 gem "wysiwyg-rails"
 gem "font-awesome-sass"
+gem 'invisible_captcha'
 
 
 group :development, :test do

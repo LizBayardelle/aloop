@@ -844,6 +844,8 @@ GEM
     htmlentities (4.3.4)
     i18n (1.5.1)
       concurrent-ruby (~> 1.0)
+    invisible_captcha (0.12.1)
+      rails (>= 3.2.0)
     io-like (0.3.0)
     ionicons-rails (2.0.0)
     jbuilder (2.8.0)
@@ -1141,6 +1143,7 @@ DEPENDENCIES
   font-awesome-sass
   friendly_id (~> 5.2.0)
   high_voltage (~> 3.1)
+  invisible_captcha
   ionicons-rails
   jbuilder (~> 2.5)
   jquery-rails
