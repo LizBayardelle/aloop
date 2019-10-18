@@ -1,5 +1,5 @@
 class Contact < ActiveRecord::Base
-  	belongs_to :user
+  	belongs_to :user, optional: true
   	after_create :send_email
 
 	private

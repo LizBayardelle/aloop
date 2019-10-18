@@ -20,6 +20,24 @@
  .background-color-transparent-white { background-color: $color-transparent-white }
 
 
+ /*
+ ==============================================
+ Main Nav
+ ==============================================
+ */
+
+ nav#custom-nav.navbar {
+  	margin-top: 40px;
+  	width: 100%;
+    z-index: 100;
+  }
+
+
+
+
+
+
+
 
 /*
 ==============================================
@@ -27,9 +45,13 @@ Spree
 ==============================================
 */
 
-a {
-  color: $color-blue;
+#spree-header {
+  margin-bottom: 20px;
+  background-color: $color-blue !important;
+  width: 100%;
 }
+
+a { color: $color-blue; }
 
 .btn-success {
   background-color: $color-red;
@@ -69,5 +91,3 @@ a {
  background-color: $color-blue;
  border-color: $color-blue;
 }
-
-// admin //

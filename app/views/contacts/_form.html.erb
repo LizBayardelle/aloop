@@ -1,7 +1,7 @@
 <%= simple_form_for(@contact) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs text-center">
+  <div class="form-inputs row text-center">
     <%= f.invisible_captcha :subtitle %>
     <div class="form-group col-sm-6">
       <%= f.label :first_name %><br>
@@ -49,7 +49,10 @@
       <%= f.select :preferred_contact_method, options_for_select(["Email","Phone"]), {}, class: "form-control" %>
     </div>
 
-    <%= f.submit "Send Message", class: "btn" %>
+    <div class="form-actions text-center w-100">
+      <%= f.submit "Send Message", class: "btn" %>
+    </div>
+
   </div> <!-- form -->
 
 <% end %>

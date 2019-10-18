@@ -1,100 +1,105 @@
-<div class="hero-image-row">
-  <div class="hero-image-outer text-center">
-    <div class="hero-image-inner text-center">
-      <%= image_tag "polaris_6.jpg", class: "hero-image", alt: "Asphalt road with clouds." %>
-    </div> <!-- hero-image-inner -->
-  </div> <!-- hero-image-inner -->
-</div> <!-- row -->
-
-<div class="overlap-hero-image">
-  <div class="index-text row">
-    <h2>How to Contact Aloop</h2>
+<header class="bgimage" style="background: url(<%= asset_url("polaris_6.jpg") %>)">
+  <div class="index-only-text w-100">
+    <div class="container py-3">
+      <h3>How to Contact Aloop</h3>
+    </div> <!-- container -->
   </div> <!-- index text row -->
-</div> <!-- overlap hero image -->
+</header>
 
-<div class="row text-center header-row background-white" style="padding-top: 20px">
-	<div class="row">
-		<div class="container">
-			<div class="col-xs-10 col-xs-push-1">
-				<h3>We might not keep regular office hours, but your business is still very&nbsp;important&nbsp;to&nbsp;us.</h3>
-				<h3>You can contact us or place an order several&nbsp;different&nbsp;ways:</h3>
-			</div> <!-- column -->
-		</div> <!-- container -->
-	</div> <!-- row -->
 
-	<div class="contact-formats row" style="padding: 20px 0 20px 0">
-		<div class="black-box col-sm-10 col-sm-push-1 background-white">
 
-			<a href="#QuickContactForm" class="no-underline">
-				<div class="col-sm-3">
-					<h2>Online<br class="hidden-lg"> Message</h2>
-					<i class="icon ion-flash"></i>
-					<p>We're always a click away. Send us a message below!</p>
-				</div> <!-- contact format box -->
-			</a>
 
-			<div class="row visible-xs">
-				<hr class="col-xs-6 col-xs-push-3">
-			</div>
 
-			<%= link_to spree_path, class: "no-underline" do %>
-				<div class="col-sm-3">
-					<h2>Order<br class="hidden-lg"> Online</h2>
-					<i class="icon ion-ios-cart"></i>
-					<p>You can order any of our products on our online store.</p>
-				</div> <!-- contact format box -->
-			<% end %>
+<section class="row text-center pt-5">
+	<div class="container">
+    <h3>We might not keep regular office hours, but your business is still very&nbsp;important&nbsp;to&nbsp;us.</h3>
+    <h3>You can contact us or place an order several&nbsp;different&nbsp;ways:</h3>
+	</div> <!-- container -->
+</section> <!-- row -->
 
-			<div class="row visible-xs">
-				<hr class="col-xs-6 col-xs-push-3">
-			</div>
 
-			<a href="mailto:sales@aloop.com" class="no-underline">
-				<div class="col-sm-3">
-					<h2>Send<br class="hidden-lg"> Email</h2>
-					<i class="icon ion-paper-airplane"></i>
-					<p>We welcome orders, reviews, and questions by email.</p>
-				</div> <!-- contact format box -->
-			</a>
 
-			<div class="row visible-xs">
-				<hr class="col-xs-6 col-xs-push-3">
-			</div>
+<section>
+  <div class="contact-formats">
+    <div class="container">
+      <div class="black-box px-5">
+        <div class="row justify-contents-center text-center">
 
-			<a href="#address-popup" class="open-popup-link no-underline">
-				<div class="col-sm-3">
-					<h2>Postal<br class="hidden-lg"> Service</h2>
-					<i class="icon ion-email"></i>
-					<p>You can post orders as well as any questions you might have.</p>
-				</div> <!-- contact format box -->
-			</a>
+          <div class="col-md-3 col-sm-6">
+            <a href="#QuickContactForm" class="no-underline">
+              <h2>Online<br class="hidden-lg"> Message</h2>
+              <i class="icon ion-flash"></i>
+              <p>We're always a click away. Send us a message below!</p>
+            </a>
+          </div> <!-- contact format box -->
 
-		</div> <!-- column -->
-	</div> <!-- row -->
+          <div class="col-md-3 col-sm-6">
+            <%= link_to spree_path, class: "no-underline" do %>
+              <h2>Order<br class="hidden-lg"> Online</h2>
+              <i class="icon ion-ios-cart"></i>
+              <p>You can order any of our products on our online store.</p>
+            <% end %>
+          </div> <!-- contact format box -->
 
-	<div class="row">
-		<h3 class="col-xs-10 col-xs-push-1">We will attempt to respond to all inquiries within 24 hours.  We are located in the USA Mountain Time Zone (GMT-7hrs).</h3>
-	</div> <!-- contact formats row -->
-</div> <!-- header row -->
+          <div class="col-md-3 col-sm-6">
+            <a href="mailto:sales@aloop.com" class="no-underline">
+              <h2>Send<br class="hidden-lg"> Email</h2>
+              <i class="icon ion-paper-airplane"></i>
+              <p>We welcome orders, reviews, and questions by email.</p>
+            </a>
+          </div> <!-- contact format box -->
 
-<a id="QuickContactForm"><span></span></a>
-<div class="row background-white" style="padding-top: 40px">
-	<div class="col-xs-12 col-sm-8 col-sm-push-2 blue-box text-center">
-		<div class="row">
-			<h1>Send Us A Message</h1>
+          <div class="col-md-3 col-sm-6">
+            <a href="#address-popup" class="open-popup-link no-underline">
+              <h2>Postal<br class="hidden-lg"> Service</h2>
+              <i class="icon ion-email"></i>
+              <p>You can post orders as well as any questions you might have.</p>
+            </a>
+          </div> <!-- contact format box -->
 
+      </div> <!-- column -->
+
+    </div> <!-- container -->
+  </div> <!-- row -->
+</section>
+
+
+
+
+
+<section class="row pb-4">
+  <div class="container text-center">
+    <h3>We will attempt to respond to all inquiries within 24 hours.  We are located in the USA Mountain Time Zone (GMT-7hrs).</h3>
+  </div> <!-- container -->
+</section> <!-- contact formats row -->
+
+
+
+
+<section class="row">
+  <div class="container">
+    <a id="QuickContactForm"><span></span></a>
+  	<div class="blue-box text-center">
+			<h2>Send Us A Message</h2>
 			<%= render 'form' %>
-
 			<%= link_to 'Back', contacts_path %>
-		</div> <!-- row -->
-	</div> <!-- blue box -->
-</div> <!-- row -->
+    </div> <!-- blue-box -->
+  </div> <!-- container -->
+</section>
 
 
 
-<div class="row text-center background-white bp50">
-	<p class="col-xs-10 col-xs-push-1" style="margin-top: 40px">If you really, really have to talk to a human being, then call Pete on his cell phone (<a href="tel:1-303-550-2582">+1 303-550-2582</a>) and leave a message. (He's the closest thing to a human being that we have here). Pete will get back to you as soon as possible, usually on the same day you call.</p>
-</div> <!-- row -->
+
+<section>
+  <div class="container text-center my-4">
+  	<h5 class="font-weight-bold">If you really, really have to talk to a human being, then call Pete on his cell phone (<a href="tel:1-303-550-2582">+1 303-550-2582</a>) and leave a message.</h5>
+    <h5 class="font-weight-bold">(He's the closest thing to a human being that we have here).</h5>
+    <h5 class="font-weight-bold">Pete will get back to you as soon as possible, usually on the same day you call.</h5>
+  </div> <!-- row -->
+</section>
+
+
+
 
 
 
@@ -105,6 +110,14 @@
 		<br>Sedalia, CO 80135, USA</h4>
     </div>
 </div> <!-- address popup -->
+
+
+
+
+
+
+
+
 
 <script type="text/javascript">
 	$('.open-popup-link').magnificPopup({

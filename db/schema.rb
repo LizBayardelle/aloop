@@ -2,18 +2,37 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_07_214721) do
+ActiveRecord::Schema.define(version: 2019_10_17_215111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_mailbox_inbound_emails", force: :cascade do |t|
+    t.integer "status", default: 0, null: false
+    t.string "message_id", null: false
+    t.string "message_checksum", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["message_id", "message_checksum"], name: "index_action_mailbox_inbound_emails_uniqueness", unique: true
+  end
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -91,10 +110,14 @@ ActiveRecord::Schema.define(version: 2019_01_07_214721) do
     t.integer "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.datetime "deleted_at"
     t.index ["country_id"], name: "index_spree_addresses_on_country_id"
+    t.index ["deleted_at"], name: "index_spree_addresses_on_deleted_at"
     t.index ["firstname"], name: "index_addresses_on_firstname"
     t.index ["lastname"], name: "index_addresses_on_lastname"
     t.index ["state_id"], name: "index_spree_addresses_on_state_id"
+    t.index ["user_id"], name: "index_spree_addresses_on_user_id"
   end
 
   create_table "spree_adjustments", id: :serial, force: :cascade do |t|
@@ -151,8 +174,8 @@ ActiveRecord::Schema.define(version: 2019_01_07_214721) do
 
   create_table "spree_countries", id: :serial, force: :cascade do |t|
     t.string "iso_name"
-    t.string "iso"
-    t.string "iso3"
+    t.string "iso", null: false
+    t.string "iso3", null: false
     t.string "name"
     t.integer "numcode"
     t.boolean "states_required", default: false
@@ -160,6 +183,8 @@ ActiveRecord::Schema.define(version: 2019_01_07_214721) do
     t.boolean "zipcode_required", default: true
     t.index "lower((iso_name)::text)", name: "index_spree_countries_on_lower_iso_name", unique: true
     t.index "lower((name)::text)", name: "index_spree_countries_on_lower_name", unique: true
+    t.index ["iso"], name: "index_spree_countries_on_iso", unique: true
+    t.index ["iso3"], name: "index_spree_countries_on_iso3", unique: true
   end
 
   create_table "spree_credit_cards", id: :serial, force: :cascade do |t|
@@ -176,7 +201,9 @@ ActiveRecord::Schema.define(version: 2019_01_07_214721) do
     t.integer "user_id"
     t.integer "payment_method_id"
     t.boolean "default", default: false, null: false
+    t.datetime "deleted_at"
     t.index ["address_id"], name: "index_spree_credit_cards_on_address_id"
+    t.index ["deleted_at"], name: "index_spree_credit_cards_on_deleted_at"
     t.index ["payment_method_id"], name: "index_spree_credit_cards_on_payment_method_id"
     t.index ["user_id"], name: "index_spree_credit_cards_on_user_id"
   end
@@ -252,6 +279,47 @@ ActiveRecord::Schema.define(version: 2019_01_07_214721) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["source_id", "source_type"], name: "index_spree_log_entries_on_source_id_and_source_type"
+  end
+
+  create_table "spree_oauth_access_grants", force: :cascade do |t|
+    t.integer "resource_owner_id", null: false
+    t.bigint "application_id", null: false
+    t.string "token", null: false
+    t.integer "expires_in", null: false
+    t.text "redirect_uri", null: false
+    t.datetime "created_at", null: false
+    t.datetime "revoked_at"
+    t.string "scopes"
+    t.index ["application_id"], name: "index_spree_oauth_access_grants_on_application_id"
+    t.index ["token"], name: "index_spree_oauth_access_grants_on_token", unique: true
+  end
+
+  create_table "spree_oauth_access_tokens", force: :cascade do |t|
+    t.integer "resource_owner_id"
+    t.bigint "application_id"
+    t.string "token", null: false
+    t.string "refresh_token"
+    t.integer "expires_in"
+    t.datetime "revoked_at"
+    t.datetime "created_at", null: false
+    t.string "scopes"
+    t.string "previous_refresh_token", default: "", null: false
+    t.index ["application_id"], name: "index_spree_oauth_access_tokens_on_application_id"
+    t.index ["refresh_token"], name: "index_spree_oauth_access_tokens_on_refresh_token", unique: true
+    t.index ["resource_owner_id"], name: "index_spree_oauth_access_tokens_on_resource_owner_id"
+    t.index ["token"], name: "index_spree_oauth_access_tokens_on_token", unique: true
+  end
+
+  create_table "spree_oauth_applications", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "uid", null: false
+    t.string "secret", null: false
+    t.text "redirect_uri", null: false
+    t.string "scopes", default: "", null: false
+    t.boolean "confidential", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uid"], name: "index_spree_oauth_applications_on_uid", unique: true
   end
 
   create_table "spree_option_type_prototypes", id: :serial, force: :cascade do |t|
@@ -330,7 +398,7 @@ ActiveRecord::Schema.define(version: 2019_01_07_214721) do
     t.datetime "approved_at"
     t.boolean "confirmation_delivered", default: false
     t.boolean "considered_risky", default: false
-    t.string "guest_token"
+    t.string "token"
     t.datetime "canceled_at"
     t.integer "canceler_id"
     t.integer "store_id"
@@ -344,10 +412,10 @@ ActiveRecord::Schema.define(version: 2019_01_07_214721) do
     t.index ["confirmation_delivered"], name: "index_spree_orders_on_confirmation_delivered"
     t.index ["considered_risky"], name: "index_spree_orders_on_considered_risky"
     t.index ["created_by_id"], name: "index_spree_orders_on_created_by_id"
-    t.index ["guest_token"], name: "index_spree_orders_on_guest_token"
     t.index ["number"], name: "index_spree_orders_on_number", unique: true
     t.index ["ship_address_id"], name: "index_spree_orders_on_ship_address_id"
     t.index ["store_id"], name: "index_spree_orders_on_store_id"
+    t.index ["token"], name: "index_spree_orders_on_token"
     t.index ["user_id", "created_by_id"], name: "index_spree_orders_on_user_id_and_created_by_id"
   end
 
@@ -407,6 +475,8 @@ ActiveRecord::Schema.define(version: 2019_01_07_214721) do
     t.decimal "amount", precision: 10, scale: 2
     t.string "currency"
     t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["deleted_at"], name: "index_spree_prices_on_deleted_at"
     t.index ["variant_id", "currency"], name: "index_spree_prices_on_variant_id_and_currency"
     t.index ["variant_id"], name: "index_spree_prices_on_variant_id"
@@ -1131,4 +1201,6 @@ ActiveRecord::Schema.define(version: 2019_01_07_214721) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "spree_oauth_access_grants", "spree_oauth_applications", column: "application_id"
+  add_foreign_key "spree_oauth_access_tokens", "spree_oauth_applications", column: "application_id"
 end

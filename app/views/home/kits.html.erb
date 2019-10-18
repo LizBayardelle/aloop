@@ -1,102 +1,124 @@
-<div class="hero-image-row">
-  <div class="hero-image-outer text-center">
-    <div class="hero-image-inner text-center">
-      <%= image_tag "polaris_5.jpg", class: "hero-image", alt: "Asphalt road with clouds." %>
-    </div> <!-- hero-image-inner -->
-  </div> <!-- hero-image-inner -->
-</div> <!-- row -->
-
-<div class="overlap-hero-image">
-  <div class="index-text row">
-    <h2>Aloop Kits</h2>
+<header class="bgimage" style="background: url(<%= asset_url("polaris_5.jpg") %>)">
+  <div class="index-only-text w-100">
+    <div class="container py-3">
+      <h3>Aloop Kits</h3>
+    </div> <!-- container -->
   </div> <!-- index text row -->
-</div> <!-- overlap hero image -->
-
-
-<div class="row black-border-row text-center background-white" style="margin-top: 0px">
-	<%= link_to kits_XR250_XR400_path do %>
-		<div class="col-sm-4 all-kit-box">
-			<div class="col-sm-4 kit-text-box">
-				<h2>4SMX Kit for XR250 & XR400</h2>
-				<span></span>
-			</div><!-- kit text box -->
-			<%= image_tag "kit_1_1.jpg", alt: "Aloop 4SMX Seat/Tank Kit for XR250 and XR400" %>
-		</div> <!-- all kit box -->
-	<% end %>
-
-	<%= link_to kits_XR600_path do %>
-		<div class="col-sm-4 all-kit-box">
-			<div class="col-sm-4 kit-text-box">
-				<h2>4SMX Kit for XR600</h2>
-				<span></span>
-			</div><!-- kit text box -->
-			<%= image_tag "kit_2_1.jpg", alt: "Aloop 4SMX Seat/Tank Kit for XR600" %>
-		</div> <!-- all kit box -->
-	<% end %>
-
-	<%= link_to kits_XR650L_path do %>
-		<div class="col-sm-4 all-kit-box">
-			<div class="col-sm-4 kit-text-box">
-				<h2>4SMX Kit for XR650L</h2>
-				<span></span>
-			</div><!-- kit text box -->
-			<%= image_tag "kit_3_1.jpg", alt: "Aloop 4SMX Seat/Tank Kit for XR650L" %>
-		</div> <!-- all kit box -->
-	<% end %>
-</div> <!-- black border row -->
-
-<div class="row  text-center">
-	<%= link_to kits_replacement_path do %>
-		<div class="col-xs-12 all-kit-box replacement-parts">
-				<div style="height: 150px">
-					<%= image_tag "metal_background.jpg", alt: "Background Image" %>
-				</div>
-			<div class="col-xs-4 kit-text-box replacement-parts">
-				<h2>Replacement Parts</h2>
-			</div><!-- kit text box -->
-		</div> <!-- all kit box -->
-	<% end %>
-</div> <!-- black border row -->
+</header>
 
 
 
+<div class="container-fluid px-5">
+  <div class="row py-5">
 
-<div class="row black-border-row text-center" style="margin-top: 0">
-	<%= link_to kits_graphics_path do %>
-		<div class="col-sm-4 all-kit-box">
-			<div class="col-sm-4 kit-text-box">
-				<h2>Aloop Graphic Kits</h2>
-				<span></span>
-			</div><!-- kit text box -->
-			<%= image_tag "graphics_gen4.jpg", alt: "Aloop Graphics" %>
-		</div> <!-- all kit box -->
-	<% end %>
-
-	<%= link_to kits_rear_fenders_1_path do %>
-		<div class="col-sm-4 all-kit-box">
-			<div class="col-sm-4 kit-text-box">
-				<h2>Rear Fenders XR250 & XR400</h2>
-				<span></span>
-			</div><!-- kit text box -->
-			<%= image_tag "fender_1.jpg", alt: "Aloop Rear Fenders XR250 and XR400" %>
-		</div> <!-- all kit box -->
-	<% end %>
-
-	<%= link_to kits_rear_fenders_2_path do %>
-		<div class="col-sm-4 all-kit-box">
-			<div class="col-sm-4 kit-text-box">
-				<h2>Rear Fenders XR600 & XR650L</h2>
-				<span></span>
-			</div><!-- kit text box -->
-			<%= image_tag "fender_2.jpg", alt: "Aloop Rear Fenders XR600 and XR650L" %>
-		</div> <!-- all kit box -->
-	<% end %>
-</div> <!-- black border row -->
+    <!-- XR250 -->
+    <div class="col-md-4 mb-4">
+      <%= link_to kits_XR250_XR400_path do %>
+        <div class="card h-100 border-0 shadow">
+          <img src="<%= asset_url("kit_1_1.jpg") %>" class="card-img-top" alt="Aloop 4SMX Seat/Tank Kit for XR250 and XR400">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">4SMX Kit for XR250 & XR400</h5>
+            <div class="card-text text-black-50">The most popular XR400 performance modification in the world!</div>
+          </div> <!-- card body -->
+        </div> <!-- card -->
+      </div> <!-- col -->
+    <% end %>
 
 
+    <!-- XR600 -->
+    <div class="col-md-4 mb-4">
+      <%= link_to kits_XR600_path do %>
+        <div class="card h-100 border-0 shadow">
+          <img src="<%= asset_url("kit_2_1.jpg") %>" class="card-img-top" alt="Aloop 4SMX Seat/Tank Kit for XR600">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">4SMX Kit for XR600</h5>
+            <div class="card-text text-black-50">This kit fits all XR600's from 1988 thru 2000. Get one for your bike today!</div>
+          </div> <!-- card body -->
+        </div> <!-- card -->
+      </div> <!-- col -->
+    <% end %>
+
+    <!-- XR600 -->
+    <div class="col-md-4 mb-4">
+      <%= link_to kits_XR650L_path do %>
+        <div class="card h-100 border-0 shadow">
+          <img src="<%= asset_url("kit_3_1.jpg") %>" class="card-img-top" alt="Aloop 4SMX Seat/Tank Kit for XR650L">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">4SMX Kit for XR650L</h5>
+            <div class="card-text text-black-50">This kit fits all XR600's from 1988 thru 2000. Get one for your bike today!</div>
+          </div> <!-- card body -->
+        </div> <!-- card -->
+      </div> <!-- col -->
+    <% end %>
 
 
+    <!-- XR250 -->
+    <div class="col-md-6 mb-4">
+      <%= link_to kits_polaris_key_covers_path do %>
+        <div class="card h-100 border-0 shadow">
+          <img src="<%= asset_url("17-19AL_KeyGuard_21.jpg") %>" class="card-img-top" alt="Polaris Key ID Color Coded Key Covers">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Polaris Key ID Color Coded Key Covers</h5>
+            <div class="card-text text-black-50">Aloop’s ‘Key ID’ color coded key covers will help you keep your keys organized.</div>
+          </div> <!-- card body -->
+        </div> <!-- card -->
+      </div> <!-- col -->
+    <% end %>
 
 
+    <!-- XR250 -->
+    <div class="col-md-6 mb-4">
+      <%= link_to kits_graphics_path do %>
+        <div class="card h-100 border-0 shadow">
+          <img src="<%= asset_url("graphics_gen4.jpg") %>" class="card-img-top" alt="Aloop Graphic Kits">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Aloop Graphic Kits</h5>
+            <div class="card-text text-black-50">Here's a look at our Aloop Graphic kits, past and present...</div>
+          </div> <!-- card body -->
+        </div> <!-- card -->
+      </div> <!-- col -->
+    <% end %>
+
+    <!-- Rear Fenders 1 -->
+    <div class="col-md-4 mb-4">
+      <%= link_to kits_rear_fenders_1_path do %>
+        <div class="card h-100 border-0 shadow">
+          <img src="<%= asset_url("fender_1.jpg") %>" class="card-img-top" alt="Rear Fenders XR250 & XR400">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Rear Fenders XR250 & XR400</h5>
+            <div class="card-text text-black-50">Fits all 1993-2004 Honda XR250R or XR400R models</div>
+          </div> <!-- card body -->
+        </div> <!-- card -->
+      <% end %>
+    </div> <!-- col -->
 
 
+    <!-- Rear Fenders 1 -->
+    <div class="col-md-4 mb-4">
+      <%= link_to kits_rear_fenders_2_path do %>
+        <div class="card h-100 border-0 shadow">
+          <img src="<%= asset_url("fender_2.jpg") %>" class="card-img-top" alt="Rear Fenders XR600 & XR650L">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Rear Fenders XR600 & XR650L</h5>
+            <div class="card-text text-black-50">Fits all Honda <strong>XR600R</strong> (1985-2000), <strong>XR650L</strong> (1993-2014), <strong>XR250R</strong> (1986-1995), <strong>XR250L</strong> (1991-1996), and <strong>XR350R</strong> (1985) models.</div>
+          </div> <!-- card body -->
+        </div> <!-- card -->
+      <% end %>
+    </div> <!-- col -->
+
+
+    <!-- Replacement -->
+    <div class="col-md-4 mb-4">
+      <a href="http://aloop.com/store/t/categories/replacement-parts">
+        <div class="card h-100 border-0 shadow">
+          <img src="<%= asset_url("metal_background.jpg") %>" class="card-img-top" alt="Replacement Parts">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Replacement Parts</h5>
+            <div class="card-text text-black-50">Need a spare part?  We've got you covered.</div>
+          </div> <!-- card body -->
+        </div> <!-- card -->
+      </a>
+    </div> <!-- col -->
+
+  </div> <!-- row -->
+</div> <!-- container -->

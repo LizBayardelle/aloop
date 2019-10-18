@@ -1,0 +1,121 @@
+<div class="menu-buffer"></div>
+
+
+<header class="pb-3 text-center container">
+	<p class="text-right" style="padding: 10px 20px 0 0"><%= link_to "Back to Kits Page", home_kits_path %></p>
+	<h1>Polaris Key ID Color Coded Key Covers</h1>
+	<h3>Aloop's Aftermarket Key Cover, Made from Soft Silicone Rubber and Color Coded to keep your keys organized.</h3>
+	<%= link_to "Buy Now", spree_path, class: "btn cta" %>
+</header>  <!-- center text no bg -->
+
+
+
+<section class="shadow-top background-white">
+
+	<div class="black-border-row justify-content-center row">
+		<div class="mini-pictures">
+			<a href="#popup-1" class="open-popup-link">
+				<%= image_tag "17-19AL_KeyGuard_21.jpg", alt: "Many Key Covers in Different Colors" %>
+			</a>
+			<a href="#popup-2" class="open-popup-link">
+				<%= image_tag "2-19AL_KeyGuard_06.jpg", alt: "Red Key Cover", class: "mini-pictures mini-picture-1" %>
+			</a>
+      <a href="#popup-3" class="open-popup-link">
+				<%= image_tag "6-19AL_KeyGuard_10.jpg", alt: "Orange Key Cover", class: "mini-pictures mini-picture-1" %>
+			</a>
+      <a href="#popup-4" class="open-popup-link">
+        <%= image_tag "13-19AL_KeyGuard_17.jpg", alt: "Yellow Key Cover", class: "mini-pictures mini-picture-1" %>
+      </a>
+      <a href="#popup-5" class="open-popup-link">
+				<%= image_tag "8-19AL_KeyGuard_12.jpg", alt: "Pink Key Cover", class: "mini-pictures mini-picture-1" %>
+			</a>
+      <a href="#popup-6" class="open-popup-link">
+				<%= image_tag "10-19AL_KeyGuard_14.jpg", alt: "Green Key Cover", class: "mini-pictures mini-picture-1" %>
+			</a>
+		</div> <!-- mini-pictures -->
+	</div> <!-- black border row -->
+
+</section> <!-- image row -->
+
+
+
+
+
+<section class="text-center py-5 container">
+	<h2><strong>Whether you own one Polaris® Offroad Vehicle or a whole fleet, Aloop’s ‘Key ID’ color coded key covers will help you keep your keys organized.</strong></h2>
+</section> <!-- center text no bg -->
+
+
+
+
+
+<section class="shadow-top background-white py-4">
+	<div class="container">
+    <p>Made in the USA from strong and flexible Silicone elastomer, Aloop Key ID key covers are UV resistant so they won’t fade in strong sunlight.</p>
+    <p>Soft in your pocket, the compliant material helps keep mud and water out of your ignition switch.</p>
+    <p>Best of all, they come in a wide range of colors, so you’ll have no trouble telling which keys go to which machine.</p>
+    <p>Use a different color for each member of the family, or simply make your keys look different from your friends. Aloop’s Key ID covers are the just one more way you can customize your machine.</p>
+    <p class="mb-0"><strong>Features</strong></p>
+    <ul>
+      <li>Interchanges with Polaris p/n 5433534</li>
+      <li>Fits Polaris Sportsman, Scrambler, Ranger, RzR 1999-Later</li>
+      <li>Soft Silicone material helps seal the ignition switch against Mud and Water</li>
+      <li>Made in the USA!</li>
+    </ul>
+	</div> <!-- container -->
+</section> <!-- fenders -->
+
+
+
+
+
+
+
+<section class="py-4">
+	<div class="container">
+		<%= render "home/cta" %>
+	</div>
+</section> <!-- image row -->
+
+
+
+<p class="text-center"><%= link_to "Back to Kits Page", home_kits_path %></p>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	$('.open-popup-link').magnificPopup({
+	  type:'inline',
+	  midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+	});
+</script>
+
+<div id="popup-1" class="image-popup mfp-hide text-center">
+  <%= image_tag "17-19AL_KeyGuard_21.jpg", alt: "Many Key Covers in Different Colors", class: "popup-picture" %>
+</div>
+
+<div id="popup-2" class="image-popup mfp-hide text-center">
+  <%= image_tag "2-19AL_KeyGuard_06.jpg", alt: "Red Key Cover", class: "popup-picture" %>
+</div>
+
+<div id="popup-3" class="image-popup mfp-hide text-center">
+  <%= image_tag "6-19AL_KeyGuard_10.jpg", alt: "Orange Key Cover", class: "popup-picture" %>
+</div>
+
+<div id="popup-4" class="image-popup mfp-hide text-center">
+  <%= image_tag "13-19AL_KeyGuard_17.jpg", alt: "Yellow Key Cover", class: "popup-picture" %>
+</div>
+
+<div id="popup-5" class="image-popup mfp-hide text-center">
+  <%= image_tag "8-19AL_KeyGuard_12.jpg", alt: "Pink Key Cover", class: "popup-picture" %>
+</div>
+
+<div id="popup-6" class="image-popup mfp-hide text-center">
+  <%= image_tag "10-19AL_KeyGuard_14.jpg", alt: "Green Key Cover", class: "popup-picture" %>
+</div>

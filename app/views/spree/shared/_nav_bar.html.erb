@@ -1,20 +1,28 @@
-<nav class="navbar" id="top-nav-bar">
-  <ul id="nav-bar" class="nav navbar-nav navbar-left" data-hook>
-    <li id="home-link" data-hook><%= link_to "Store Home", spree.root_path %></li>
-    <% if current_spree_user && current_spree_user.admin? %>
-      <li><%= link_to "Admin Page", spree.admin_path %></li>
-    <% end %>
-  </ul>
-  <ul id="nav-bar" class="nav navbar-nav navbar-right" data-hook>
-    <li id="link-to-cart" data-hook>
-      <noscript>
-        <%= link_to_cart %>
-      </noscript>
-      &nbsp;
-    </li>
-    <script>Spree.fetch_cart()</script>
-    <li id="search-bar" data-hook>
-      <%#= render partial: 'spree/shared/search' %>
-    </li>
-  </ul>
+<nav id="spree-blue-nav" class="navbar navbar-expand-sm navbar-dark">
+  <%= link_to "Store Home", spree.root_path, class: "navbar-brand" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li id="link-to-cart" class="nav-item" data-hook>
+        <noscript>
+          <%= link_to_cart class: "nav-link" %>
+        </noscript>
+        &nbsp;
+      </li>
+
+      <script>Spree.fetch_cart()</script>
+
+      <% if current_spree_user && current_spree_user.admin? %>
+        <li class="nav-item"><%= link_to "Admin Page", spree.admin_path, class: "nav-link" %></li>
+      <% else %>
+        <li class="nav-item"><%= link_to "Login", spree.login_path, class: "nav-link" %></li>
+      <% end %>
+
+      <!-- <li id="search-bar"  class="nav-item"data-hook>
+        <%#= render partial: 'spree/shared/search' %>
+      </li> -->
+    </ul>
+  </div>
 </nav>

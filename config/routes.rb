@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'kits/XR250_XR400'
   get 'kits/XR600'
   get 'kits/XR650L'
+  get 'kits/polaris_key_covers'
   get 'kits/replacement'
   get 'kits/rear_fenders_1'
   get 'kits/rear_fenders_2'

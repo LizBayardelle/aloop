@@ -8,6 +8,9 @@ class KitsController < ApplicationController
   def XR650L
   end
 
+  def polaris_key_covers
+  end
+
   def replacement
   end
 

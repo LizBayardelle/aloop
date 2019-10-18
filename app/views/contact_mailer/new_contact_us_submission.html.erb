@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+
+  <body>
+    <hr style="border: 0; border-top: solid 2px #001dd7;" />
+    <h1 style="text-align: center">A New Message Has Been Sent on Aloop.com</h1>
+    <hr style="border: 0; border-top: solid 2px #001dd7; margin-bottom: 25px" />
+    <p>
+      Attention Aloop Masterminds,
+    </p>
+
+    <div style="border: 2px solid #001dd7; margin: 20px 30px 20px 30px; padding: 15px">
+      <p><strong>Name: </strong><%= @contact.first_name %> <%= @contact.last_name %></p>
+      <p><strong>Phone: </strong><%= @contact.phone %></p>
+      <p><strong>Email: </strong><%= mail_to @contact.email %></p>
+      <p><%= @contact.message %></p>
+    </div> <!-- box -->
+
+    <hr style="border: 0; border-top: solid 2px #001dd7; margin-top: 25px" />
+    <img src="http://aloop.com/assets/masterlogoSQ-7a928bd7cfb6cfe98ca3b0391900eac5746b26a10e629ae69034695de431d38c.png" style="width: 300px; display: block; margin-right: auto; margin-left: auto">
+    <hr style="border: 0; border-top: solid 2px #001dd7;" />
+  </body>
+
+</html>
