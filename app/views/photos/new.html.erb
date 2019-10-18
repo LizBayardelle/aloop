@@ -1,20 +1,22 @@
-<div class="hero-image-row">
-  <div class="hero-image-outer text-center">
-    <div class="hero-image-inner text-center">
-      <%= image_tag "polaris_10.jpg", class: "hero-image", alt: "Asphalt road with clouds." %>
-    </div> <!-- hero-image-inner -->
-  </div> <!-- hero-image-inner -->
+<header class="bgimage" style="background: url(<%= asset_url("polaris_10.jpg") %>)">
+  <div class="index-only-text w-100">
+    <div class="container py-3">
+      <h3>Submit a Photo</h3>
+    </div> <!-- container -->
+  </div> <!-- index text row -->
+</header>
+
+
+
+
+
+<div class="row background-white">
+  <div class="container">
+  	<%= render 'form' %>
+  </div> <!-- page container -->
 </div> <!-- row -->
 
-<div class="overlap-hero-image">
-  <div class="index-text row">
-    <h2>Submit a Photo</h2>
-  </div> <!-- index text row -->
-</div> <!-- overlap hero image -->
 
-<div class="container">
-	<%= render 'form' %>
-</div> <!-- page container -->
 
 <script type="text/javascript">
   $(document).ready(function(){
