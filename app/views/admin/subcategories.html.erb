@@ -41,7 +41,7 @@
                     <td>
                       <% n = 0 %>
                       <% Blog.all.each do |blog| %>
-                        <% if blog.subcategories.each do |sub| %>
+                        <% blog.subcategories.each do |sub| %>
                           <% if sub == subcategory %>
                             <% n += 1 %>
                           <% end %>

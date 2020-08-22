@@ -7,15 +7,17 @@
 </header>
 
 
-<div class="row text-center py-5">
+
+<section class="row text-center py-5">
 	<div class="container">
 		<h2>No other single modification can give you such an immediate gain in handling, performance, and&nbsp;style!</h2>
     <%= link_to "See Our Customer Photos", photos_path, class: "btn cta" %>
 	</div> <!-- container -->
-</div> <!-- row -->
+</section> <!-- row -->
 
 
-<div class="background-white py-5">
+
+<section class="background-white py-5">
   <div class="container">
     <div class="row">
 
@@ -37,14 +39,27 @@
 
     </div> <!-- info row -->
   </div> <!-- info row -->
-</div> <!-- container -->
+</section> <!-- container -->
 
 
 
 
-<div class="row text-center py-5">
+<section class="row text-center py-5">
 	<div class="container">
 		<h2>See our full range of products</h2>
     <%= link_to "Go to Store", main_app.spree_path, class: "btn cta" %>
 	</div> <!-- container -->
-</div> <!-- row -->
+</section> <!-- row -->
+
+
+<% if @latest_blog %>
+  <section class="row py-5 background-white">
+  	<div class="container">
+  		<h2 class="text-center"><%= @latest_blog.title %></h2>
+      <%= @latest_blog.body.html_safe %>
+      <div class="text-center">
+        <%= link_to "Read More", blogs_path, class: "btn cta" %>
+      </div>
+  	</div> <!-- container -->
+  </section> <!-- row -->
+<% end %>
