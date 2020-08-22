@@ -40,7 +40,6 @@ class BlogsController < ApplicationController
     end
 
     if params[:blog][:image].present?
-      @blog.image.purge
       @blog.image.attach(params[:blog][:image])
     end
 
