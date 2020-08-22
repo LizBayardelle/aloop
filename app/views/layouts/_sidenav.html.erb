@@ -1,0 +1,23 @@
+<div id="mySidenav" class="sidenav">
+
+<div class="barred-a">
+  <h2>The Blog</h2>
+  <%= link_to "+ New Blog", new_blog_path %>
+  <%= link_to "Blog Manager", admin_blogs_path %>
+  <%= link_to "Subcategories", admin_subcategories_path %>
+  <%= link_to "Resource Manager", admin_resources_path %>
+  <%= link_to "Subscribers", admin_subscribers_path %>
+</div>
+
+<div class="barred-a">
+  <h2 style="padding-top: 30px">Store Admin</h2>
+  <%= link_to "Backend", spree.admin_path %>
+</div>
+
+<div class="barred-a">
+  <h2 style="padding-top: 30px">My Info</h2>
+  <%= link_to "My Author Info", admin_blogs_path(anchor: "author") %>
+</div>
+
+
+</div>

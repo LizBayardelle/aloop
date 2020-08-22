@@ -20,15 +20,45 @@
 
   <body>
 
+    <%= render "layouts/sidenav" %>
     <%= image_tag "metal_footer_background.jpg", class: "bg" %>
-
 
     <%= render "layouts/navbar" %>
     <%= render "layouts/notifications" %>
 
+    <% if current_spree_user && current_spree_user.admin? %>
+      <div onclick="openNav()" style="position: absolute; z-index: 99999; color: red; margin-top: 65px; margin-left: 20px; font-size: 30px" >
+        ☰
+      </div>
+    <% end %>
+
     <%= yield %>
 
     <%= render "layouts/footer" %>
+
+
+    <script>
+      function openNav() {
+          var e = document.getElementById("mySidenav");
+          if (e.style.width == '250px')
+          { e.style.width = '0px'; }
+          else
+          { e.style.width = '250px'; }
+      }
+
+      function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+      }
+    </script>
+
+    <script>
+      // ALERT setTimeout(function
+      $(document).ready(function(){
+        setTimeout(function(){
+          $('.flash-notice-area').fadeOut('slow');
+        }, 5000);
+      })
+    </script>
 
   </body>
 </html>

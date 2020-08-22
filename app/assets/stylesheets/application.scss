@@ -19,7 +19,7 @@
  // @import "bootstrap-sprockets";
  @import "bootstrap";
  @import 'ionicons';
-
+ @import "font-awesome";
 
 
 
@@ -77,6 +77,15 @@
 
  .btn.cta {
  	background-color: $color-red;
+ }
+
+ .aloop-card {
+   padding: 25px 35px;
+   margin-top: 50px;
+   margin-bottom: 50px;
+   background-color: white;
+   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+   border: solid thin $color-blue;
  }
 
  html { scroll-behavior: smooth; }
@@ -263,9 +272,6 @@ nav.navbar {
  ==============================================
  */
 
- footer {
-   background-color: white;
- }
 
  .footer-stripe {
  	background-color: $color-transparent-black;
@@ -322,13 +328,22 @@ nav.navbar {
  .invisible-table th {
  	font-weight: 900;
  	text-align: center;
+  }
+
+  .alternating-table th {
+  background-color: white;
  }
 
- .alternating-table tr:nth-child(even) {
+ .alternating-table th td {
+ padding-left: 5px;
+ padding-right: 5px;
+}
+
+ .alternating-table tr:nth-child(odd) {
  	background-color: $color-silver;
  }
 
- .alternating-table tr:nth-child(odd) {
+ .alternating-table tr:nth-child(even) {
  	background-color: white;
  }
 
@@ -338,9 +353,69 @@ nav.navbar {
  	margin: 0px auto;
  }
 
+ .alternating-table td {
+   border: none;
+ }
+
  table .icon {
  	margin-right: 5px;
  }
+
+
+
+
+
+
+
+
+
+ /*
+ ==============================================
+Sidenav
+ ==============================================
+ */
+ .sidenav {
+     height: 100%;
+     width: 0;
+     position: absolute;
+     z-index: 99999;
+     background-color: #000;
+     overflow-x: hidden;
+     transition: 0.5s;
+     padding-top: 125px;
+ }
+
+ .sidenav h2 {
+   padding-left: 10px;
+   color: $color-blue;
+ }
+
+ .sidenav a {
+     padding: 8px 8px 8px 32px;
+     text-decoration: none;
+     font-size: 20px;
+     color: white;
+     display: block;
+     transition: 0.3s;
+ }
+
+ .sidenav a:hover {
+   color: $color-red !important;
+}
+
+ .sidenav .barred-a a:not(:last-child) {
+     border-bottom: solid thin grey;
+ }
+
+ .sidenav a:hover, .offcanvas a:focus{
+     color: #f1f1f1;
+ }
+
+ @media screen and (max-height: 450px) {
+   .sidenav {padding-top: 15px;}
+   .sidenav a {font-size: 18px;}
+ }
+
 
 
 
@@ -568,6 +643,42 @@ Gallery
 
 
 
+
+ /*
+ ==============================================
+ Blogs
+ ==============================================
+ */
+
+ form {
+   width: 100%;
+ }
+
+.blog-form .field {
+  margin-top: 15px;
+}
+
+.blog-form label {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.thumbnail {
+  height: 250px;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.thumbnail-sm {
+  height: 150px;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.pin {
+  max-height: 200px;
+  max-width: 100%;
+  display: inline-block;
+  margin: 8px;
+}
 
 
 

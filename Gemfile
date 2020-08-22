@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'mini_magick'
 gem 'devise'
+gem 'tinymce-rails'
 
 
 gem 'spree', '~> 4.0'
@@ -29,7 +30,7 @@ gem 'jquery-rails'
 gem 'sprockets-rails'
 gem 'bootstrap', '4.3.1'
 gem 'bcrypt', '~> 3.1.7'
-gem 'friendly_id'
+gem 'friendly_id', '~> 5.3.0'
 gem 'stripe'
 gem 'figaro'
 gem 'magnific-popup-rails', '~> 1.1.0'
@@ -46,7 +47,6 @@ gem 'convertkit-ruby', require: 'convertkit'
 gem 'dotenv-rails'
 gem 'acts_as_list'
 gem "wysiwyg-rails"
-gem "font-awesome-sass"
 gem 'invisible_captcha'
 
 

@@ -1,0 +1,66 @@
+<div class="blog-form">
+  <%= form_with(model: resource, local: true) do |form| %>
+    <% if resource.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
+
+        <ul>
+          <% resource.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form.hidden_field :user, value: current_spree_user %>
+
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :description %>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <label>Subcategories</label>
+      <% if Subcategory.where(active: true).count != 0 %>
+        <% Subcategory.all.each do |sub| %>
+          <div class="form-check col-sm-6 col-md-4 subCheck">
+              <input type="checkbox" value="<%= sub.id %>" class="form-check-input" id="blog_subcategory_ids_<%= sub.id %>" name="blog[subcategory_ids][]">
+              <label class="form-check-label" style="text-decoration: none; font-weight: 400" for="blog_subcategory_ids_<%= sub.id %>"><%= sub.name %></label>
+          </div>
+        <% end %>
+      <% else %>
+        <p>You should probably <%= link_to "add a subcategory", new_subcategory_path %>, huh?</p>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= form.label "What Is it?" %>
+      <%= form.text_field :classification, class: "form-control", placeholder: "i.e. Downloadable PDF, Printable Checklist, etc." %>
+    </div>
+
+    <div class="field">
+      <label>Uplaod Sample Image</label><br>
+      <%= form.file_field :sample %>
+    </div> <!-- col-12 -->
+
+    <div class="field">
+      <label>Upload Actual Document</label><br>
+      <%= form.file_field :document %>
+    </div> <!-- col-12 -->
+
+
+    <div class="field">
+      <%= form.check_box :active %>
+      <%= form.label "Publish this Lead Magnet (aka non-draft)" %>
+    </div>
+
+    <div class="actions field text-center">
+      <%= form.submit class: "btn" %>
+    </div>
+  <% end %>
+</div>

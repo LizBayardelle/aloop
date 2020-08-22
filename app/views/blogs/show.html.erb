@@ -1,0 +1,262 @@
+<% if @blog.image.attached? %>
+  <%= content_for :meta_og_image do %>
+    <meta property="og:image" content="<%= polymorphic_url(@blog.image) %>" />
+  <% end %>
+<% end %>
+
+<%= content_for :meta_og_title do %>
+  <meta property="og:title" content="<%= @blog.title %> | Aloop Offroad" />
+<% end %>
+
+<%= content_for :meta_og_url do %>
+    <meta property="og:url" content="<%= polymorphic_url(@blog) %>" />
+<% end %>
+
+<%= content_for :meta_og_desc do %>
+  <meta property="og:description" content="<%= @blog.teaser %>" />
+<% end %>
+
+
+<main id="blog-show">
+
+  <header class="bgimage" style="background: url(<%= polymorphic_url(@blog.image) %>)" alt="<%= @blog.title %>">
+    <div class="index-only-text w-100">
+      <div class="container py-3">
+        <h3><%= @blog.title %></h3>
+      </div> <!-- container -->
+    </div> <!-- index text row -->
+  </header>
+
+
+
+
+
+  <div class="background-white pt-3">
+
+    <section class="text-center text-sm-right px-5 pt-2">
+      <%= link_to 'Back to Blog', blogs_path %>
+      <% if current_spree_user && current_spree_user.admin? %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to 'Edit Blog', edit_blog_path(@blog) %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to 'Resource Index', admin_resources_path %>
+      <% end %>
+    </section>
+
+
+
+    <section class="container text-center ">
+      <div class="row">
+        <div class="col-md-12 wow fadeIn mb-3">
+          <h1 class="display-4 mb-2 wow fadeInDown font-weight-bold" data-wow-delay="0.3s"><%= @blog.title %></h1>
+          <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s">
+            <%= @blog.teaser %>
+          </h4>
+          <a class="btn wow fadeIn -hover" data-wow-delay="0.4s" href="#goodies">Skip to the Free Goodies</a>
+        </div> <!-- col -->
+      </div> <!-- row -->
+    </section> <!-- container -->
+
+
+
+    <section class="container text-center pb-4 pt-2">
+      <% if @blog.video_url != "" %>
+        <%= @blog.video_url.html_safe %>
+      <% end %>
+    </section>
+
+
+    <section class="container pb-4 pt-2">
+      <div class="row">  <!-- row-->
+        <div class="col-md-12 pb-3"> <!-- column-->
+          <div id="blog-body"><%= raw(@blog.body) %></div>
+        </div> <!-- column -->
+
+        <%= render partial: "users/biobox", locals: { user: @blog.user } %>
+
+        <div class="col-12 justify-contents center">
+
+            <hr class="col-6 mt-4">
+
+            <h3 class="">Related Reading</h3>
+            <p>
+              <ul>
+                <% Blog.all.each do |blog| %>
+                  <li><%= link_to blog.title, blog_path(blog) %></li>
+                <% end %>
+              </ul>
+            </p>
+        </div> <!-- col -->
+
+      </div> <!-- row -->
+    </section> <!-- container -->
+  </div> <!-- white background -->
+
+
+
+  <% if @blog.resource_id %>
+    <div class="container py-5">
+      <h2 class="font-weight-bold text-center color-white">Take the Next Step</h2>
+      <div class="row">
+        <div class="col-sm-3">
+          <%= image_tag @blog.resource.sample, class: "pin z-depth-3 mx-auto" %>
+        </div> <!-- col -->
+        <div class="col-sm-9 pl-5 color-white">
+          <p><%= raw(@blog.resource.description) %></p>
+          <div class="text-center">
+            <% if current_spree_user %>
+            <%= link_to "Get it Now", resource_path(@blog.resource.id), class: "btn" %>
+            <% else %>
+            <button type="button" class="btn" data-toggle="modal" data-target="#basicExampleModal">
+              Get it Now
+            </button>
+            <% end %>
+          </div> <!-- center -->
+        </div> <!-- col -->
+      </div> <!-- row -->
+    </div> <!-- container -->
+  <% end %>
+
+
+
+
+  <div class="z-depth-3 bg-white" id="body">
+    <div class="container py-5">
+
+      <h2 class="text-center pt-4 pb-2">Comments</h2>
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () {
+          this.page.url = "<%= polymorphic_url(@blog) %>";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "<%= @blog.id %>"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://aloop-offroad.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+      </script>
+
+    </div> <!-- container -->
+  </div> <!-- z depth -->
+
+
+
+  <section class="py-5 text-center">
+    <h2 class="font-weight-bold ">Share the Wisdom</h2>
+    <div class="text-center mb-3">
+      <div class="fb-share-button"
+        data-href="<%= polymorphic_url(@blog) %>"
+        data-layout="button_count">
+      </div>
+      <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"></a>
+    </div> <!-- sm share buttons-->
+  </section> <!-- share -->
+
+
+
+  <section class="pb-4 bg-white">
+    <div class="container">
+      <div class="row py-4 text-center">  <!-- row-->
+
+        <div class="col-12"> <!-- column-->
+          <h2 class="font-weight-bold">Want more information?</h2>
+          <h3>Stay up to date with all things Aloop.</h3>
+          <% resource_id = @blog.resource_id ? ( @blog.resource_id ) : ( resource_id = 1 ) %>
+          <%= render partial: 'subscribers/form', locals: { subscriber: Subscriber.new, resource_id: resource_id } %>
+        </div> <!-- column-->
+
+      </div> <!-- row-->
+
+    </div> <!-- container -->
+  </section> <!-- white -->
+
+</main>
+
+
+
+
+
+
+
+
+<!-- NEW SUBSCRIBER MODAL -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="text-right pr-3">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <h2>Subscribe</h2>
+        <% if @blog.resource_id %>
+          <p>To get access to your <span class="font-weight-bold"><%= Resource.find(@blog.resource_id).title %></span> right now!
+        <% else %>
+          <p>Achieve your goals with helpful resources direct to your inbox.
+        <% end %>
+          <br>We promise never to spam you and you may unsubscribe&nbsp;at&nbsp;any&nbsp;time.</p>
+          <% resource_id = @blog.resource_id ? ( @blog.resource_id ) : ( resource_id = 1 ) %>
+          <%= render partial: 'subscribers/form', locals: { subscriber: Subscriber.new, resource_id: resource_id } %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- NEW SUBSCRIBER MODAL -->
+
+
+
+
+
+<script>
+  $(document).ready(function() {
+    // object-fit polyfill run
+    objectFitImages();
+
+    /* init Jarallax */
+    jarallax(document.querySelectorAll('.jarallax'));
+
+    jarallax(document.querySelectorAll('.jarallax-keep-img'), {
+        keepImg: true,
+    });
+  });
+
+  //disqus_config()
+  var disqus_config = function () {
+    this.page.url = "<%= polymorphic_url(@blog) %>";  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = "<%= @blog.id %>"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://aloop-offroad.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+
+
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!-- facebook share -->
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".footer").removeClass("top-shadow-inset");
+  });
+</script>

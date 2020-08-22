@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  email: MyString
+  customer: false
+  unsubscribed: false
+  resource_id_array: MyText
+
+two:
+  first_name: MyString
+  email: MyString
+  customer: false
+  unsubscribed: false
+  resource_id_array: MyText

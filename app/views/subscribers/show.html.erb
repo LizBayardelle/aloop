@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @subscriber.first_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @subscriber.email %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @subscriber.customer %>
+</p>
+
+<p>
+  <strong>Unsubscribed:</strong>
+  <%= @subscriber.unsubscribed %>
+</p>
+
+<p>
+  <strong>Resource id array:</strong>
+  <%= @subscriber.resource_id_array %>
+</p>
+
+<%= link_to 'Edit', edit_subscriber_path(@subscriber) %> |
+<%= link_to 'Back', subscribers_path %>

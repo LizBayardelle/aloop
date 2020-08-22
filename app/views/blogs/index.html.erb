@@ -1,0 +1,39 @@
+<header class="bgimage" style="background: url(<%= asset_url("polaris_11.jpg") %>)">
+  <div class="index-only-text w-100">
+    <div class="container py-3">
+      <h3>The Aloop Blog</h3>
+    </div> <!-- container -->
+  </div> <!-- index text row -->
+</header>
+
+<main class="bg-white">
+
+  <section class="text-center text-sm-right px-5 py-3">
+    <% if current_spree_user && current_spree_user.admin? %>
+        <%= link_to 'New Blog', new_blog_path %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to 'Blog Manager', admin_blogs_path %>
+    <% end %>
+  </section>
+
+
+
+  <section class="container text-center pb-5"> <!-- blogs -->
+    <div class="row">  <!-- Grid row -->
+
+      <% @blogs.each do |blog| %>
+        <%= render partial: "layouts/blog_card", locals: { blog: blog } %>
+      <% end %>
+
+    </div>   <!-- Grid row -->
+  </section>
+
+</main>
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".footer").removeClass("top-shadow-inset");
+  });
+</script>

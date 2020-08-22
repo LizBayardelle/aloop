@@ -1,0 +1,100 @@
+<header
+  class="bgimage"
+  style="background: url(<%= asset_url("tiretracks.jpg") %>); height: 200px">
+</header>
+
+<div class="background-white py-5">
+  <div class="container text-center pb-2">
+    <main class="py-5 container">
+
+      <header class="text-center">
+        <h1>Subscribers</h1>
+      </header>
+
+
+      <div class="">
+        <h2>Subscribers by Resource</h2>
+        <section id="by-resource" class="pb-5">
+          <table class="alternating-table">
+            <thead>
+              <tr>
+                <th scope="col">Resource Name</th>
+                <th scope="col"># Subscribed</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% Resource.all.each do |resource| %>
+                <tr>
+                  <% subscribed = 0 %>
+
+                  <% @subscribers.each do |sub| %>
+                    <% if sub.resource_id_array.include?(resource.id.to_s) %>
+                      <% subscribed += 1 %>
+                    <% end %>
+                  <% end %>
+
+                  <td><%= link_to resource.title, resource %></td>
+                  <td><%= subscribed %></td>
+                <tr>
+              <% end %>
+            </tbody>
+          </table>
+        </section>  <!-- resources -->
+
+
+        <% unsubscribed = Subscriber.where(unsubscribed: true) %>
+
+        <h2>Subscribers List (<%= @subscribers.count - unsubscribed.count %>)</h2>
+        <section>
+          <table class="alternating-table">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Resources</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Unsub</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @subscribers.each do |subscriber| %>
+                <% memberMatch = false %>
+                <% Spree::User.all.each do |u| %>
+                  <% if u.email == subscriber.email %>
+                    <% memberMatch = true %>
+                  <% end %>
+                <% end %>
+                <tr>
+                  <td><%= subscriber.created_at.strftime("%m/%d/%Y") %></td>
+                  <td><%= subscriber.first_name %></td>
+                  <td><%= subscriber.email %></td>
+                  <td><% subscriber.resource_id_array.each do |res_id| %><%= Resource.find(res_id).title %><br><% end %></td>
+                  <td class="text-center"><% if memberMatch %>✔<% end %></td>
+                  <td class="text-center"><% if subscriber.unsubscribed %>✘<% end %></td>
+                  <td class="text-center"><%= link_to '✘', subscriber, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </section> <!-- by-name -->
+      </div> <!-- pb-4 -->
+    </main>
+
+
+  </div> <!-- container -->
+</div> <!-- background -->
+
+
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".footer").removeClass("top-shadow-inset");
+  });
+</script>

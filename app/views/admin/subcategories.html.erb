@@ -1,0 +1,75 @@
+<header
+  class="bgimage"
+  style="background: url(<%= asset_url("tiretracks.jpg") %>); height: 200px">
+</header>
+
+<div class="background-white pb-5 pt-3">
+  <div class="container text-center pb-2">
+
+    <header class="">
+      <p class="text-center">
+        <%= link_to 'New Subcategory', new_subcategory_path %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to 'Blogs Manager', admin_blogs_path %>
+      </p>
+
+      <h1 class="font-weight-bold text-center">Subcategories</h1>
+    </header>
+
+    <section class="text-center mb-5 my-"> <!-- blogs -->
+      <div class="container">  <!-- container -->
+
+        <div class="stb-box">
+          <div class="table-responsive" style="width: 100%">
+            <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th class="th-sm">Name</th>
+                  <th class="th-sm">Content</th>
+                  <th class="th-sm">Active</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @subcategories.each do |subcategory| %>
+                  <tr>
+                    <td class="text-left">
+                      <%= link_to subcategory.name, subcategory %>
+                      <%= link_to '✎'.html_safe, edit_subcategory_path(subcategory), class: "color-blue" %>
+                      <%= link_to '✘'.html_safe, subcategory, method: :delete, data: { confirm: 'Are you sure?' }, class: "color-pink" %>
+                    </td>
+                    <td>
+                      <% n = 0 %>
+                      <% Blog.all.each do |blog| %>
+                        <% if blog.subcategories.each do |sub| %>
+                          <% if sub == subcategory %>
+                            <% n += 1 %>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                      <%= pluralize(n, "Blog") %>
+                    </td>
+                    <td><% if subcategory.active %>✔<% end %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div> <!-- table responsive -->
+        </div> <!-- box -->
+
+      </div> <!-- container -->
+    </section>
+
+
+
+  </div> <!-- container -->
+</div> <!-- background -->
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".footer").removeClass("top-shadow-inset");
+  });
+</script>

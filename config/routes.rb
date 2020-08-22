@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'admin/blogs'
+  get 'admin/resources'
+  get 'admin/subcategories'
+  get 'admin/subscribers'
+  resources :blogs
+  resources :resources
+  resources :subscribers
+  resources :subcategories
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to
   # Spree::ProductsController.

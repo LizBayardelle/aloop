@@ -1,0 +1,67 @@
+<header
+  class="bgimage"
+  style="background: url(<%= asset_url("tiretracks.jpg") %>); height: 200px">
+</header>
+
+<div class="background-white py-5">
+  <div class="container text-center pb-2">
+    <header class="text-center mb-4">
+      <p>
+        <%= link_to 'New Resource', new_resource_path %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to 'Public Resources Page', resources_path %>
+      </p>
+      <h1 class="text-center font-weight-bold">Resource Manager</h1>
+
+    </header>
+
+    <section class="text-center my-5"> <!-- blogs -->
+      <div class="container">  <!-- container -->
+
+
+        <div class="table-responsive" style="width: 100%">
+          <table id="dtBasicExample" class="table table-striped table-bordered" width="100%">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Active</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @resources.each do |resource| %>
+                <tr>
+                  <td style="text-align: top">
+                    <%= link_to resource.title, resource %>
+                    (
+                    <span style="font-size: 20px">
+                      <%= link_to "✐", edit_resource_path(resource) %>
+                    </span>
+                    <span style="font-size: 16px">
+                      <%= link_to "⌫", resource, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    </span>
+                    )
+                  </td>
+                  <td><%= link_to resource.classification, url_for(resource.document) %></td>
+
+                  <td><% if resource.active %>✓<% end %></td>
+
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div> <!-- table responsive -->
+      </section>
+
+
+  </div> <!-- container -->
+</div> <!-- background -->
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".footer").removeClass("top-shadow-inset");
+  });
+</script>

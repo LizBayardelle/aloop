@@ -1,0 +1,105 @@
+<div class="row blog-form">
+  <%= form_with(model: blog, local: true) do |form| %>
+    <% if blog.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+
+        <ul>
+          <% blog.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :teaser %>
+      <%= form.text_field :teaser, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <label>Image</label>
+      <br>
+      <%= form.file_field :image %>
+    </div>
+
+    <div class="field">
+      <label>Subcategories</label>
+      <% if Subcategory.where(active: true).count != 0 %>
+        <% Subcategory.all.each do |sub| %>
+          <div class="form-check col-sm-6 col-md-4 subCheck">
+              <input type="checkbox" value="<%= sub.id %>" class="form-check-input" id="blog_subcategory_ids_<%= sub.id %>" name="blog[subcategory_ids][]">
+              <label class="form-check-label" for="blog_subcategory_ids_<%= sub.id %>"><%= sub.name %></label>
+          </div>
+        <% end %>
+      <% else %>
+        <p>You should probably <%= link_to "add a subcategory", new_subcategory_path %>, huh?</p>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <label for="title">The Blog Itself</label>
+      <%= form.text_area :body, class: "tinymce", rows: 20, style: "width: 100%" %>
+      <%= tinymce_assets %>
+      <%= tinymce plugins: ["wordcount", "code", "anchor", "codesample", "hr", "link", "preview"] %>
+    </div>
+
+    <div class="field">
+      <%= form.label "Display on Site" %>
+      <%= form.check_box :published %>
+    </div>
+
+    <div class="field">
+      <%= form.label :published_at %>
+      <br>
+      <%= form.datetime_field :published_at %>
+    </div>
+
+    <div class="field">
+      <%= form.label "YouTube Embed Code" %>
+      <%= form.text_field :video_url, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <label>Lead Magnet/Resource</label>
+      <% resource_collection = [] %>
+      <% Resource.where(active: true).each do |lm| %>
+        <% resource_collection << ["#{lm.title}", "#{lm.id}"] %>
+      <% end %>
+      <div class="row text-left">
+        <div class="form-group col-12">
+          <% if resource_collection != [] %>
+            <%= form.collection_select(:resource_id, Resource.where(active: true), :id, :title, prompt: true) %>
+          <% else %>
+            <p>You should probably <%= link_to "add a lead magnet", new_resource_path %>, huh?</p>
+          <% end %>
+        </div>
+      </div> <!-- row -->    </div>
+
+
+    <div class="actions text-center">
+      <%= form.submit class: "btn" %>
+    </div>
+  <% end %>
+
+</div> <!-- row -->
+
+
+
+
+
+  <script>
+    $(document).ready(function() {
+      tinymce.init({
+        selector: "textarea",  // change this value according to your HTML
+        plugins: "code",
+        toolbar: "code",
+        menubar: "tools"
+      });
+    });
+  </script>

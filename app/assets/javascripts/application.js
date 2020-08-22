@@ -19,6 +19,7 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require magnific-popup
+//= require tinymce
 //= require_tree .
 
 

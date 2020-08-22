@@ -1,0 +1,57 @@
+<header class="mb-4">
+  <p class="text-right mt-2 mr-2">
+    <%= link_to 'New Subcategory', new_subcategory_path, class: "btn btn-blue btn-sm" %>
+    <%= link_to 'Blogs Manager', admin_blogs_path, class: "btn btn-blue btn-sm" %>
+  </p>
+
+  <h1 class="font-weight-bold text-center">Subcategories</h1>
+</header>
+
+<section class="text-center mb-5 my-"> <!-- blogs -->
+  <div class="container">  <!-- container -->
+
+    <div class="stb-box">
+      <div class="table-responsive" style="width: 100%">
+        <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th class="th-sm">Name</th>
+              <th class="th-sm">Active</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @subcategories.each do |subcategory| %>
+              <tr>
+                <td class="text-left">
+                  <%= link_to subcategory.name, subcategory %>
+                  <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_subcategory_path(subcategory), class: "color-blue" %>
+                  <%= link_to '<i class="fas fa-times"></i>'.html_safe, subcategory, method: :delete, data: { confirm: 'Are you sure?' }, class: "color-pink" %>
+                </td>
+                <td><% if subcategory.active %><i class="fas fa-check"></i><% end %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div> <!-- table responsive -->
+    </div> <!-- box -->
+
+  </div> <!-- container -->
+</section>
+
+
+
+
+
+
+
+
+
+<script>
+  $(document).ready(function () {
+    $('#dtBasicExample').DataTable(
+      "ordering": true
+    );
+    $('.dataTables_length').addClass('bs-select');
+  });
+</script>

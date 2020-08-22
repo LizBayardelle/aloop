@@ -1,0 +1,34 @@
+<header
+  class="bgimage"
+  style="background: url(<%= asset_url("tiretracks.jpg") %>); height: 200px">
+</header>
+
+<div class="background-white py-5">
+
+  <header class="container text-center">
+    <h1>
+      <%= @subcategory.name %>
+      <% if current_spree_user && current_spree_user.admin? && !@subcategory.active %>INACTIVE<% end %>
+    </h1>
+    <%= @subcategory.description %>
+
+  </header> <!-- info row -->
+
+
+
+  <section class="container pt-5">
+    <h2>Blogs</h2>
+    <% Blog.all.each do |blog| %>
+      <% blog.subcategories.each do |sub| %>
+        <% if sub == subcategory %>
+          <%= render partial: "layouts/blog_card", locals: { blog: blog } %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+  </section>
+
+
+
+
+</div> <!-- container -->

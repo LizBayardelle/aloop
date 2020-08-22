@@ -1,0 +1,13 @@
+<header
+  class="bgimage"
+  style="background: url(<%= asset_url("tiretracks.jpg") %>); height: 200px">
+</header>
+
+<div class="background-white py-5">
+  <div class="container">
+    <div class="row">
+      <h1>Edit Subcategory</h1>
+    </div> <!-- info row -->
+    <%= render 'form', subcategory: @subcategory %>
+  </div> <!-- info row -->
+</div> <!-- container -->

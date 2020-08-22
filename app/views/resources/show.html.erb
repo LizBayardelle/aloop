@@ -1,0 +1,36 @@
+<header
+  class="bgimage"
+  style="background: url(<%= asset_url("tiretracks.jpg") %>); height: 200px">
+</header>
+
+<div class="background-white py-5">
+  <div class="container text-center pb-2">
+
+      <% if current_spree_user && current_spree_user.admin? %>
+        <p>
+          <%= link_to 'Edit Resource', edit_resource_path(@resource) %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to 'Resource Manager', admin_resources_path %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to 'Resources Page', resources_path %>
+        </p>
+      <% end %>
+
+      <h1 class="mb-0 thin"><%= @resource.title %></h1>
+      <h3 class="mb-0 h4 font-weight-bold color-red"><%= @resource.classification %></h3>
+
+      <p><em>
+        <% if current_spree_user && current_spree_user.admin? %>
+          <% if @resource.active %>Active<% else %>Inactive<% end %>
+        <% end %>
+      </em></p>
+
+
+      <img src="<%= rails_blob_path(@resource.sample) %>" class="thumbnail mt-2 mb-4" alt="Sample <%= @resource.title %> Image">
+
+      <p class=""><%= @resource.description %></p>
+
+      <a href="<%= rails_blob_path(@resource.document) %>" class="btn btn-pink btn-md" target="_blank">Download</a>
+
+  </div> <!-- container -->
+</div> <!-- background white -->

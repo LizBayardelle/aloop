@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_17_215111) do
+ActiveRecord::Schema.define(version: 2020_08_21_165229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,31 @@ ActiveRecord::Schema.define(version: 2019_10_17_215111) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "blog_categorizations", force: :cascade do |t|
+    t.bigint "blog_id"
+    t.bigint "subcategory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blog_id"], name: "index_blog_categorizations_on_blog_id"
+    t.index ["subcategory_id"], name: "index_blog_categorizations_on_subcategory_id"
+  end
+
+  create_table "blogs", force: :cascade do |t|
+    t.string "title"
+    t.string "teaser"
+    t.text "body"
+    t.boolean "published", default: false
+    t.datetime "published_at"
+    t.string "video_url"
+    t.bigint "spree_user_id", null: false
+    t.bigint "resource_id", null: false
+    t.string "slug"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_id"], name: "index_blogs_on_resource_id"
+    t.index ["spree_user_id"], name: "index_blogs_on_spree_user_id"
+  end
+
   create_table "contacts", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -93,6 +118,28 @@ ActiveRecord::Schema.define(version: 2019_10_17_215111) do
     t.boolean "approved", default: false
     t.text "comments"
     t.string "kit"
+  end
+
+  create_table "resource_categorizations", force: :cascade do |t|
+    t.bigint "resource_id", null: false
+    t.bigint "subcategory_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_id"], name: "index_resource_categorizations_on_resource_id"
+    t.index ["subcategory_id"], name: "index_resource_categorizations_on_subcategory_id"
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "subcategory_id"
+    t.boolean "active", default: true
+    t.string "classification"
+    t.bigint "spree_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["spree_user_id"], name: "index_resources_on_spree_user_id"
+    t.index ["subcategory_id"], name: "index_resources_on_subcategory_id"
   end
 
   create_table "spree_addresses", id: :serial, force: :cascade do |t|
@@ -1175,6 +1222,25 @@ ActiveRecord::Schema.define(version: 2019_10_17_215111) do
     t.index ["kind"], name: "index_spree_zones_on_kind"
   end
 
+  create_table "subcategories", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.boolean "active", default: true
+    t.string "slug"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "subscribers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "email"
+    t.boolean "customer", default: false
+    t.boolean "unsubscribed", default: false
+    t.text "resource_id_array", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -1200,7 +1266,25 @@ ActiveRecord::Schema.define(version: 2019_10_17_215111) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.boolean "admin", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "spree_api_key", limit: 48
+    t.integer "ship_address_id"
+    t.integer "bill_address_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blogs", "resources"
+  add_foreign_key "blogs", "spree_users"
+  add_foreign_key "resource_categorizations", "resources"
+  add_foreign_key "resource_categorizations", "subcategories"
+  add_foreign_key "resources", "spree_users"
+  add_foreign_key "resources", "subcategories"
   add_foreign_key "spree_oauth_access_grants", "spree_oauth_applications", column: "application_id"
   add_foreign_key "spree_oauth_access_tokens", "spree_oauth_applications", column: "application_id"
 end
