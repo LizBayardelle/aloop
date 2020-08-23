@@ -20,3 +20,9 @@ Spree.user_class = "User"
 Rails.application.config.to_prepare do
   require_dependency 'spree/authentication_helpers'
 end
+
+Spree::PermittedAttributes.user_attributes << [:first_name]
+Spree::PermittedAttributes.user_attributes << [:last_name]
+Spree::PermittedAttributes.user_attributes << [:bio]
+Spree::PermittedAttributes.user_attributes << [:avatar]
+Spree::PermittedAttributes.user_attributes << [:avatar_url]

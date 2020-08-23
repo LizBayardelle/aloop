@@ -63,9 +63,10 @@
 
 
 
-    <section id="author" class="aloop-card">
-      <h2>My Author Info</h2>
-
+    <section id="author">
+      <h2 style="padding-bottom: 0; margin-bottom: 0">My Author Info</h2>
+      <%= render partial: "users/biobox", locals: { user: current_spree_user } %>
+      <p class="text-center">You'll be able to update this yourself soon. For now, contact the Lizbot. Sorry.</p>
     </section>
 
 </div> <!-- background -->

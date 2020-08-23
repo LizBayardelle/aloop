@@ -1,3 +1,11 @@
-<section class="biobox">
-  <p>AUTHOR INFORMATION GOES HERE</p>
+<section class="biobox aloop-card">
+  <div class="row">
+    <div class="col-12 col-sm-4 text-center">
+      <img src="<%= user.avatar_url %>" style="width: 100%; height: auto; max-width: 250px" class="bottom-shadow">
+    </div>
+    <div class="col-12 col-sm-8 text-center text-sm-left pt-4 p-sm-0">
+      <h2><%= user.first_name %> <%= user.last_name %></h2>
+      <p><%= user.bio %></p>
+    </div>
+  </div>
 </section>
