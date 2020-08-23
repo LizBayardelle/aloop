@@ -19,7 +19,7 @@
   <%= link_to blog do %>
     <h3 class="font-weight-bold mb-0 pb-0"><strong><%= blog.title %></strong></h3>
   <% end %>
-  <p class="mb-1"><em>by <%= Spree::User.find(blog.spree_user_id).email %><% if blog.published_at %>, <%= blog.published_at.strftime("%b %e, %Y") %><% end %></em></p>
+  <p class="mb-1"><em>by <%= Spree::User.find(blog.spree_user_id).first_name %> <%= Spree::User.find(blog.spree_user_id).last_name %><% if blog.published_at %>, <%= blog.published_at.strftime("%b %e, %Y") %><% end %></em></p>
   <p class="dark-grey-text small-line-height">
     <%= blog.teaser %>
     <% if current_spree_user && current_spree_user.admin? %>
