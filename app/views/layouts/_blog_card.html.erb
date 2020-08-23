@@ -1,11 +1,10 @@
 <div class="col-lg-4 col-md-6 mb-md-0 mb-4"> <!-- Grid column -->
 
-  <div class="view overlay rounded z-depth-2 mb-3">
-    <% if blog.image.attached? %>
-      <img class="img-fluid" src="<%= polymorphic_url(blog.image) %>" alt="Sample image">
-    <% end %>
+  <div class="view overlay rounded bottom-shadow mb-3">
     <%= link_to blog do %>
-      <div class="mask rgba-white-slight"></div>
+      <% if blog.image.attached? %>
+        <img class="img-fluid" src="<%= polymorphic_url(blog.image) %>" alt="Sample image">
+      <% end %>
     <% end %>
   </div> <!-- Featured image -->
 

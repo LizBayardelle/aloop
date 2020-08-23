@@ -5,7 +5,7 @@ module Spree
     end
 
     def spree_current_user
-      current_user
+      current_spree_user
     end
   end
 

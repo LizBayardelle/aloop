@@ -24,7 +24,7 @@
         <li class="nav-item"><%= link_to "Info", main_app.home_info_path, class: "nav-link" %></li>
         <li class="nav-item"><%= link_to "Export", main_app.home_export_path, class: "nav-link" %></li>
         <% if current_spree_user && current_spree_user.admin? %>
-          <li class="nav-item"><%= link_to "Messages", main_app.contacts_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Blog", main_app.blogs_path, class: "nav-link" %></li>
         <% else %>
           <li class="nav-item"><%= link_to "Contact", main_app.new_contact_path, class: "nav-link" %></li>
         <% end %>
