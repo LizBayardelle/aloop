@@ -1,5 +1,5 @@
 <header class="bgimage" style="background: url(<%= asset_url("polaris_6.jpg") %>)">
-  <div class="index-only-text w-100">
+  <div class="index-only-text bottom-shadow w-100">
     <div class="container py-3">
       <h3>"The Honda that Honda should have built..."</h3>
     </div> <!-- container -->
@@ -17,7 +17,7 @@
 
 
 
-<section class="background-white py-5">
+<section class="background-white shadow-top bottom-shadow py-5">
   <div class="container">
     <div class="row">
 
@@ -53,13 +53,56 @@
 
 
 <% if @latest_blog %>
-  <section class="row py-5 background-white">
+  <section class="row py-5 background-white shadow-top bottom-shadow">
   	<div class="container">
   		<h2 class="text-center"><%= @latest_blog.title %></h2>
       <%= @latest_blog.body.html_safe %>
       <div class="text-center">
-        <%= link_to "Read More", blogs_path, class: "btn cta" %>
+        <%= link_to "More from the Blog", blogs_path, class: "btn cta" %>
       </div>
+  	</div> <!-- container -->
+  </section> <!-- row -->
+<% end %>
+
+
+
+
+
+
+<% if @videos != [] %>
+  <section class="row py-5 ">
+  	<div class="container">
+      <h2 class="text-center pb-3">Videos</h2>
+      <div class="row">
+        <% @videos.each do |video| %>
+          <div class="col-sm-6 col-md-4 video-grid">
+            <%= video.video_url.html_safe %>
+          </div> <!-- col -->
+        <% end %>
+      </div> <!-- row -->
+  	</div> <!-- container -->
+  </section> <!-- row -->
+<% end %>
+
+
+
+<% if @latest_blog %>
+  <section class="row py-5 background-white shadow-top bottom-shadow">
+  	<div class="container">
+  		<h2 class="text-center pb-4">From the 'Gram</h2>
+
+      <!-- Place <div> tag where you want the feed to appear -->
+      <div id="curator-feed-aloop-offroad-layout"><a href="https://curator.io" target="_blank" class="crt-logo crt-tag">Powered by Curator.io</a></div>
+      <!-- The Javascript can be moved to the end of the html page before the </body> tag -->
+      <script type="text/javascript">
+      /* curator-feed-aloop-offroad-layout */
+      (function(){
+      var i, e, d = document, s = "script";i = d.createElement("script");i.async = 1;
+      i.src = "https://cdn.curator.io/published/65414202-ebc8-4b03-90ae-5b54dab3ee4d.js";
+      e = d.getElementsByTagName(s)[0];e.parentNode.insertBefore(i, e);
+      })();
+      </script>
+
   	</div> <!-- container -->
   </section> <!-- row -->
 <% end %>

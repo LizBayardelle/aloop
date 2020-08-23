@@ -433,6 +433,10 @@ Sidenav
  ==============================================
  */
 
+.video-grid iframe {
+  width: 100% !important;
+  height: auto !important;
+}
 
  .header-row h1 {
  	font-size: 50px;
