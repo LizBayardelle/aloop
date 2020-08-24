@@ -69,7 +69,7 @@
           <div id="blog-body"><%= raw(@blog.body) %></div>
         </div> <!-- column -->
 
-        <%= render partial: "users/biobox", locals: { user: User.find(@blog.spree_user_id) } %>
+        <%= render partial: "users/biobox", locals: { user: Spree::User.find(@blog.spree_user_id) } %>
 
         <div class="col-12 justify-contents center">
 
