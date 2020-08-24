@@ -69,7 +69,7 @@
           <div id="blog-body"><%= raw(@blog.body) %></div>
         </div> <!-- column -->
 
-        <%= render partial: "users/biobox", locals: { user: @blog.user } %>
+        <%= render partial: "users/biobox", locals: { user: User.find(@blog.spree_user_id) } %>
 
         <div class="col-12 justify-contents center">
 
@@ -79,7 +79,9 @@
             <p>
               <ul>
                 <% Blog.all.each do |blog| %>
-                  <li><%= link_to blog.title, blog_path(blog) %></li>
+                  <% unless blog.id == @blog.id %>
+                    <li><%= link_to blog.title, blog_path(blog) %></li>
+                  <% end %>
                 <% end %>
               </ul>
             </p>
