@@ -2,8 +2,10 @@
 
   <div class="view overlay rounded bottom-shadow mb-3">
     <%= link_to blog do %>
-      <% if blog.image.attached? %>
-        <img class="img-fluid" src="<%= polymorphic_url(blog.image) %>" alt="Sample image">
+      <% if blog.image_url %>
+      <img class="img-fluid" src="<%= blog.image_url %>" alt="<%= blog.title %>">
+      <% elsif blog.image.attached? %>
+        <img class="img-fluid" src="<%= polymorphic_url(blog.image) %>" alt="<%= blog.title %>">
       <% end %>
     <% end %>
   </div> <!-- Featured image -->

@@ -110,7 +110,12 @@ class BlogsController < ApplicationController
         :published_at,
         :subcategory_ids,
 
+        :image_url,
         :video_url,
+        :pin1,
+        :pin2,
+        :pin3,
+        :pin4,
         :user_id,
         :resource_id,
         :slug

@@ -12,74 +12,126 @@
       </div>
     <% end %>
 
-    <div class="field">
-      <%= form.label :title %>
-      <%= form.text_field :title, class: "form-control" %>
-    </div>
+    <section class="aloop-card">
+      <h2 class="text-center">Basic Information</h2>
 
-    <div class="field">
-      <%= form.label :teaser %>
-      <%= form.text_field :teaser, class: "form-control" %>
-    </div>
+      <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title, class: "form-control" %>
+      </div>
 
-    <div class="field">
-      <label>Image</label>
-      <br>
-      <%= form.file_field :image %>
-    </div>
+      <div class="field">
+        <%= form.label :teaser %>
+        <%= form.text_field :teaser, class: "form-control" %>
+      </div>
 
-    <div class="field">
-      <label>Subcategories</label>
-      <% if Subcategory.where(active: true).count != 0 %>
-        <% Subcategory.all.each do |sub| %>
-          <div class="form-check col-sm-6 col-md-4 subCheck">
-              <input type="checkbox" value="<%= sub.id %>" class="form-check-input" id="blog_subcategory_ids_<%= sub.id %>" name="blog[subcategory_ids][]">
-              <label class="form-check-label" for="blog_subcategory_ids_<%= sub.id %>"><%= sub.name %></label>
-          </div>
-        <% end %>
-      <% else %>
-        <p>You should probably <%= link_to "add a subcategory", new_subcategory_path %>, huh?</p>
-      <% end %>
-    </div>
-
-    <div class="field">
-      <label for="title">The Blog Itself</label>
-      <%= form.text_area :body, class: "tinymce", rows: 20, style: "width: 100%" %>
-      <%= tinymce_assets %>
-      <%= tinymce plugins: ["wordcount", "code", "anchor", "codesample", "hr", "link", "preview"] %>
-    </div>
-
-    <div class="field">
-      <%= form.label "Display on Site" %>
-      <%= form.check_box :published %>
-    </div>
-
-    <div class="field">
-      <%= form.label :published_at %>
-      <br>
-      <%= form.datetime_field :published_at %>
-    </div>
-
-    <div class="field">
-      <%= form.label "YouTube Embed Code" %>
-      <%= form.text_field :video_url, class: "form-control" %>
-    </div>
-
-    <div class="field">
-      <label>Lead Magnet/Resource</label>
-      <% resource_collection = [] %>
-      <% Resource.where(active: true).each do |lm| %>
-        <% resource_collection << ["#{lm.title}", "#{lm.id}"] %>
-      <% end %>
-      <div class="row text-left">
-        <div class="form-group col-12">
-          <% if resource_collection != [] %>
-            <%= form.collection_select(:resource_id, Resource.where(active: true), :id, :title, prompt: true) %>
-          <% else %>
-            <p>You should probably <%= link_to "add a lead magnet", new_resource_path %>, huh?</p>
+      <div class="field">
+        <label>Subcategories</label>
+        <% if Subcategory.where(active: true).count != 0 %>
+          <% Subcategory.all.each do |sub| %>
+            <div class="form-check col-sm-6 col-md-4 subCheck pl-5">
+                <input type="checkbox" value="<%= sub.id %>" class="form-check-input" id="blog_subcategory_ids_<%= sub.id %>" name="blog[subcategory_ids][]">
+                <label class="form-check-label" for="blog_subcategory_ids_<%= sub.id %>"><%= sub.name %></label>
+            </div>
           <% end %>
+        <% else %>
+          <p>You should probably <%= link_to "add a subcategory", new_subcategory_path %>, huh?</p>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <label>Lead Magnet</label>
+        <% resource_collection = [] %>
+        <% Resource.where(active: true).each do |lm| %>
+          <% resource_collection << ["#{lm.title}", "#{lm.id}"] %>
+        <% end %>
+        <div class="row text-left">
+          <div class="form-group col-12">
+            <% if resource_collection != [] %>
+              <%= form.collection_select(:resource_id, Resource.where(active: true), :id, :title, prompt: true) %>
+            <% else %>
+              <p>You should probably <%= link_to "add a lead magnet", new_resource_path %>, huh?</p>
+            <% end %>
+          </div>
+        </div> <!-- row -->
+      </div>
+    </section>
+
+
+    <section class="aloop-card">
+      <h2 class="text-center">Images and Media</h2>
+
+      <div class="row">
+        <div class="field col-6">
+          <%= form.label :image_url %>
+          <%= form.text_field :image_url, class: "form-control" %>
         </div>
-      </div> <!-- row -->    </div>
+
+        <div class="field col-6">
+          <label>Upload an Image</label>
+          <br>
+          <%= form.file_field :image %>
+        </div>
+
+        <div class="col-12">
+          <p class="text-center"><em>You only need one image source (url or upload).  If both are present, the URL will be used.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <%= form.label "Pinterest Pin Url 1" %>
+          <%= form.text_field :pin1, class: "form-control" %>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <%= form.label "Pinterest Pin Url 2" %>
+          <%= form.text_field :pin2, class: "form-control" %>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <%= form.label "Pinterest Pin Url 3" %>
+          <%= form.text_field :pin3, class: "form-control" %>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <%= form.label "Pinterest Pin Url 4" %>
+          <%= form.text_field :pin4, class: "form-control" %>
+        </div>
+      </div> <!-- row -->
+
+      <div class="field">
+        <%= form.label "YouTube Embed Code" %>
+        <%= form.text_field :video_url, class: "form-control" %>
+      </div>
+
+
+    </section>
+
+
+    <section class="aloop-card">
+      <h2 class="text-center">Blog and Publishing</h2>
+
+      <div class="field">
+        <label for="title">The Blog Itself</label>
+        <%= form.text_area :body, class: "tinymce", rows: 20, style: "width: 100%" %>
+        <%= tinymce_assets %>
+        <%= tinymce plugins: ["wordcount", "code", "anchor", "codesample", "hr", "link", "preview"] %>
+      </div>
+
+      <div class="row">
+        <div class="field col-sm-6">
+          <%= form.check_box :published %>
+          <%= form.label "Display on Site" %>
+        </div>
+
+        <div class="field col-sm-6">
+          <%= form.label "Date Published" %>
+          <br>
+          <%= form.datetime_field :published_at %>
+        </div>
+      </div> <!-- row -->
+    </section>
 
 
     <div class="actions text-center">

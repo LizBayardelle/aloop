@@ -1,4 +1,8 @@
-<% if @blog.image.attached? %>
+<% if @blog.image_url %>
+  <%= content_for :meta_og_image do %>
+    <meta property="og:image" content="<%= @blog.image_url %>" />
+  <% end %>
+<% elsif @blog.image.attached? %>
   <%= content_for :meta_og_image do %>
     <meta property="og:image" content="<%= polymorphic_url(@blog.image) %>" />
   <% end %>
@@ -18,8 +22,11 @@
 
 
 <main id="blog-show">
-
-  <header class="bgimage" style="background: url(<%= polymorphic_url(@blog.image) %>)" alt="<%= @blog.title %>">
+  <% if @blog.image_url %>
+    <header class="bgimage" style="background: url(<%= @blog.image_url %>)" alt="<%= @blog.title %>">
+  <% else %>
+    <header class="bgimage" style="background: url(<%= polymorphic_url(@blog.image) %>)" alt="<%= @blog.title %>">
+  <% end %>
     <div class="index-only-text w-100">
       <div class="container py-3">
         <h3><%= @blog.title %></h3>
@@ -150,6 +157,20 @@
         data-layout="button_count">
       </div>
       <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"></a>
+      <div class="text-center w-100 pt-3">
+        <% if @blog.pin1 %>
+          <%= image_tag @blog.pin1, class: "pin shadow-bottom", style: "display: inline-block" %>
+        <% end %>
+        <% if @blog.pin2 %>
+          <%= image_tag @blog.pin2, class: "pin shadow-bottom", style: "display: inline-block" %>
+        <% end %>
+        <% if @blog.pin3 %>
+          <%= image_tag @blog.pin3, class: "pin shadow-bottom", style: "display: inline-block" %>
+        <% end %>
+        <% if @blog.pin4 %>
+          <%= image_tag @blog.pin4, class: "pin shadow-bottom", style: "display: inline-block" %>
+        <% end %>
+      </div>
     </div> <!-- sm share buttons-->
   </section> <!-- share -->
 
