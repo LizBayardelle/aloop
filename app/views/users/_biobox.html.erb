@@ -1,11 +1,13 @@
-<section class="biobox aloop-card" style="margin-top: 10px">
-  <div class="row">
-    <div class="col-12 col-sm-4 text-center">
-      <img src="<%= user.avatar_url %>" style="width: 100%; height: auto; max-width: 250px" class="bottom-shadow">
+<% if user %>
+  <section class="biobox aloop-card" style="margin-top: 15px; margin-bottom: 15px">
+    <div class="row">
+      <div class="col-12 col-sm-4 text-center">
+        <img src="<%= user.avatar_url %>" style="width: 100%; height: auto; max-width: 250px" class="bottom-shadow">
+      </div>
+      <div class="col-12 col-sm-8 text-center text-sm-left pt-4 p-sm-0">
+        <h2><%= user.first_name %> <%= user.last_name %></h2>
+        <p><%= user.bio %></p>
+      </div>
     </div>
-    <div class="col-12 col-sm-8 text-center text-sm-left pt-4 p-sm-0">
-      <h2><%= user.first_name %> <%= user.last_name %></h2>
-      <p><%= user.bio %></p>
-    </div>
-  </div>
-</section>
+  </section>
+<% end %>
