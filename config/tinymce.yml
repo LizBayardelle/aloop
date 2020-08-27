@@ -1,6 +1,5 @@
 toolbar:
   - styleselect | bold italic underline strikethrough | indent outdent | alignleft aligncenter alignright alignjustify | blockquote | uploadimage image | link anchor | code codeformat codesample | bullist numlist checklist
-  - code | undo redo
 plugins:
   - code
   - image
@@ -15,3 +14,4 @@ menubar:
   - format
   - table
   - tools
+images_upload_url: '/uploader/image'

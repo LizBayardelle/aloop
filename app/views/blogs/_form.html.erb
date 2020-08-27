@@ -25,36 +25,53 @@
         <%= form.text_field :teaser, class: "form-control" %>
       </div>
 
-      <div class="field">
-        <label>Subcategories</label>
-        <% if Subcategory.where(active: true).count != 0 %>
-          <% Subcategory.all.each do |sub| %>
-            <div class="form-check col-sm-6 col-md-4 subCheck pl-5">
-                <input type="checkbox" value="<%= sub.id %>" class="form-check-input" id="blog_subcategory_ids_<%= sub.id %>" name="blog[subcategory_ids][]">
-                <label class="form-check-label" for="blog_subcategory_ids_<%= sub.id %>"><%= sub.name %></label>
-            </div>
+      <div class="row">
+        <div class="col-12 col-sm-4 mt-3">
+          <label>Subcategory</label>
+          <% subcategory_collection = [] %>
+          <% Subcategory.where(active: true).each do |sub| %>
+            <% subcategory_collection << ["#{sub.name}", "#{sub.id}"] %>
           <% end %>
-        <% else %>
-          <p>You should probably <%= link_to "add a subcategory", new_subcategory_path %>, huh?</p>
-        <% end %>
-      </div>
+          <div class="row text-left">
+            <div class="form-group col-12">
+              <%= form.collection_select(:subcategory_id, Subcategory.where(active: true), :id, :name, prompt: true) %>
+            </div>
+          </div> <!-- row -->
+        </div>
 
-      <div class="field">
-        <label>Lead Magnet</label>
-        <% resource_collection = [] %>
-        <% Resource.where(active: true).each do |lm| %>
-          <% resource_collection << ["#{lm.title}", "#{lm.id}"] %>
-        <% end %>
-        <div class="row text-left">
-          <div class="form-group col-12">
-            <% if resource_collection != [] %>
-              <%= form.collection_select(:resource_id, Resource.where(active: true), :id, :title, prompt: true) %>
-            <% else %>
-              <p>You should probably <%= link_to "add a lead magnet", new_resource_path %>, huh?</p>
+        <div class="col-12 col-sm-4 mt-3">
+          <label>Lead Magnet</label>
+          <% resource_collection = [] %>
+          <% Resource.where(active: true).each do |lm| %>
+            <% resource_collection << ["#{lm.title}", "#{lm.id}"] %>
+          <% end %>
+          <div class="row text-left">
+            <div class="form-group col-12">
+              <% if resource_collection != [] %>
+                <%= form.collection_select(:resource_id, Resource.where(active: true), :id, :title, prompt: true) %>
+              <% else %>
+                <p>You should probably <%= link_to "add a lead magnet", new_resource_path %>, huh?</p>
+              <% end %>
+            </div>
+          </div> <!-- row -->
+        </div>
+
+        <div class="col-12 col-sm-4 mt-3">
+          <label>Author</label>
+          <% author_collection = [] %>
+          <% Spree::User.all.each do |author| %>
+            <% if author.admin? %>
+              <% author_collection << ["#{author.first_name} #{author.last_name}", "#{author.id}"] %>
             <% end %>
-          </div>
-        </div> <!-- row -->
-      </div>
+          <% end %>
+          <div class="row text-left">
+            <div class="form-group col-12">
+              <%= form.collection_select(:author_id, Spree::User.where.not(bio: ""), :id, :first_name, prompt: true) %>
+            </div>
+          </div> <!-- row -->
+        </div>
+
+      </div> <!-- row -->
     </section>
 
 
@@ -115,8 +132,7 @@
       <div class="field">
         <label for="title">The Blog Itself</label>
         <%= form.text_area :body, class: "tinymce", rows: 20, style: "width: 100%" %>
-        <%= tinymce_assets %>
-        <%= tinymce plugins: ["wordcount", "code", "anchor", "codesample", "hr", "link", "preview"] %>
+        <%= tinymce :content_css => asset_path('application.css')%>
       </div>
 
       <div class="row">
@@ -145,13 +161,10 @@
 
 
 
-  <script>
-    $(document).ready(function() {
-      tinymce.init({
-        selector: "textarea",  // change this value according to your HTML
-        plugins: "code",
-        toolbar: "code",
-        menubar: "tools"
-      });
+<script>
+  $(document).ready(function() {
+    tinymce.init({
+      selector: "textarea.tinymce",  // change this value according to your HTML
     });
-  </script>
+  });
+</script>
