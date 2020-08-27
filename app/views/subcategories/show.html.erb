@@ -16,27 +16,33 @@
 
 
 
-  <section class="container pt-5">
-    <h2>Blogs</h2>
-    <% Blog.all.each do |blog| %>
-      <% blog.subcategories.each do |sub| %>
-        <% if sub == subcategory %>
+  <section class="container pt-5 pb-3">
+    <h2 class="text-center">Blogs</h2>
+    <div class="row">
+      <% Blog.all.each do |blog| %>
+        <% sub = blog.subcategory %>
+        <% if sub == @subcategory %>
           <%= render partial: "layouts/blog_card", locals: { blog: blog } %>
         <% end %>
       <% end %>
-    <% end %>
-
+    </div> <!-- row -->
   </section>
 
 
 
 
+  <section class="container pt-5 pb-3">
+    <h2 class="text-center">Resources</h2>
+    <div class="row">
+      <% Resource.all.each do |resource| %>
+        <% sub = resource.subcategory %>
+        <% if sub == @subcategory %>
+          <%= render partial: "layouts/resource_card", locals: { resource: resource } %>
+        <% end %>
+      <% end %>
+    </div> <!-- row -->
+  </section>
+
+
+
 </div> <!-- container -->
-
-
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $(".footer").removeClass("top-shadow-inset");
-  });
-</script>

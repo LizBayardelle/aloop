@@ -34,7 +34,7 @@
           <% end %>
           <div class="row text-left">
             <div class="form-group col-12">
-              <%= form.collection_select(:subcategory_id, Subcategory.where(active: true), :id, :name, prompt: true) %>
+              <%= form.collection_select(:subcategory_id, Subcategory.where(active: true), :id, :name, prompt: true, class: "form-control") %>
             </div>
           </div> <!-- row -->
         </div>
@@ -48,7 +48,7 @@
           <div class="row text-left">
             <div class="form-group col-12">
               <% if resource_collection != [] %>
-                <%= form.collection_select(:resource_id, Resource.where(active: true), :id, :title, prompt: true) %>
+                <%= form.collection_select(:resource_id, Resource.where(active: true), :id, :title, prompt: true, class: "form-control") %>
               <% else %>
                 <p>You should probably <%= link_to "add a lead magnet", new_resource_path %>, huh?</p>
               <% end %>
@@ -66,7 +66,7 @@
           <% end %>
           <div class="row text-left">
             <div class="form-group col-12">
-              <%= form.collection_select(:author_id, Spree::User.where.not(bio: ""), :id, :first_name, prompt: true) %>
+              <%= form.collection_select(:spree_user_id, Spree::User.where.not(bio: ""), :id, :first_name, prompt: true, class: "form-control") %>
             </div>
           </div> <!-- row -->
         </div>

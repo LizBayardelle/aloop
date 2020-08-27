@@ -25,7 +25,8 @@
               <thead>
                 <tr>
                   <th class="th-sm">Name</th>
-                  <th class="th-sm">Content</th>
+                  <th class="th-sm">Blogs</th>
+                  <th class="th-sm">Lead Magnets</th>
                   <th class="th-sm">Active</th>
                 </tr>
               </thead>
@@ -41,14 +42,22 @@
                     <td>
                       <% n = 0 %>
                       <% Blog.all.each do |blog| %>
-                        <% blog.subcategories.each do |sub| %>
-                          <% if sub == subcategory %>
-                            <% n += 1 %>
-                          <% end %>
+                        <% if blog.subcategory == subcategory %>
+                          <% n += 1 %>
                         <% end %>
                       <% end %>
-                      <%= pluralize(n, "Blog") %>
+                      <%= n %>
                     </td>
+                    <td>
+                      <% n = 0 %>
+                      <% Resource.all.each do |resource| %>
+                        <% if resource.subcategory == subcategory %>
+                          <% n += 1 %>
+                        <% end %>
+                      <% end %>
+                      <%= n %>
+                    </td>
+
                     <td><% if subcategory.active %>✔<% end %></td>
                   </tr>
                 <% end %>

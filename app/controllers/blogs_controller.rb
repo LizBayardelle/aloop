@@ -4,17 +4,13 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
+    @blogs = Blog.where(published: true)
+    @subcategories = Subcategory.where(active: true)
   end
 
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    @subcategories = []
-    @blog.subcategory_ids.each do |id|
-      @subcategories << Subcategory.friendly.find(id)
-    end
-
   end
 
   # GET /blogs/new
@@ -29,22 +25,13 @@ class BlogsController < ApplicationController
 
   def create
     @blog = Blog.new(blog_params)
-    @blog.spree_user_id = current_spree_user.id
-
-    @blog.subcategory_ids.each do |subid|
-      s = Subcategory.friendly.find(subid)
-      array = s.blog_ids
-      array << @blog.id
-      s.update_attributes(blog_ids: array)
-      s.save!
-    end
 
     if params[:blog][:image].present?
       @blog.image.attach(params[:blog][:image])
     end
 
     respond_to do |format|
-      if @blog.save
+      if @blog.save!
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
         format.json { render :show, status: :created, location: @blog }
       else
@@ -57,14 +44,6 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
   def update
-
-    @blog.subcategory_ids.each do |subid|
-      s = Subcategory.friendly.find(subid)
-      array = s.blog_ids
-      array << @blog.id
-      s.update_attributes(blog_ids: array)
-      s.save!
-    end
 
     if params[:blog][:image].present?
       @blog.image.purge
@@ -108,7 +87,6 @@ class BlogsController < ApplicationController
 
         :published,
         :published_at,
-        :subcategory_ids,
 
         :image_url,
         :video_url,
@@ -116,8 +94,9 @@ class BlogsController < ApplicationController
         :pin2,
         :pin3,
         :pin4,
-        :user_id,
+        :spree_user_id,
         :resource_id,
+        :subcategory_id,
         :slug
       )
     end

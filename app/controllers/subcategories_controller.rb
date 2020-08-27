@@ -56,7 +56,7 @@ class SubcategoriesController < ApplicationController
   def destroy
     @subcategory.destroy
     respond_to do |format|
-      format.html { redirect_to subcategories_url, notice: 'Subcategory was successfully destroyed.' }
+      format.html { redirect_to admin_subcategories_path, notice: 'Subcategory was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,7 +64,7 @@ class SubcategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subcategory
-      @subcategory = Subcategory.find(params[:id])
+      @subcategory = Subcategory.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

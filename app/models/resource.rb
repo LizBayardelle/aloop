@@ -1,8 +1,7 @@
 class Resource < ApplicationRecord
   belongs_to :user, optional: true
 
-  has_many :resource_categorizations
-  has_many :subcategories, through: :resource_categorizations
+  belongs_to :subcategory
 
   has_many :blogs
   has_many :subscribers

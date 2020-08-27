@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_26_164907) do
+ActiveRecord::Schema.define(version: 2020_08_27_225435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,8 +81,10 @@ ActiveRecord::Schema.define(version: 2020_08_26_164907) do
     t.string "pin2"
     t.string "pin3"
     t.string "pin4"
+    t.bigint "subcategory_id"
     t.index ["resource_id"], name: "index_blogs_on_resource_id"
     t.index ["spree_user_id"], name: "index_blogs_on_spree_user_id"
+    t.index ["subcategory_id"], name: "index_blogs_on_subcategory_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -1296,6 +1298,7 @@ ActiveRecord::Schema.define(version: 2020_08_26_164907) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blogs", "resources"
   add_foreign_key "blogs", "spree_users"
+  add_foreign_key "blogs", "subcategories"
   add_foreign_key "resource_categorizations", "resources"
   add_foreign_key "resource_categorizations", "subcategories"
   add_foreign_key "resources", "spree_users"

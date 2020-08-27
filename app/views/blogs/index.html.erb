@@ -19,8 +19,7 @@
 
 
   <section class="container text-center pb-5"> <!-- blogs -->
-    <div class="row">  <!-- Grid row -->
-
+    <div class="row justify-content-center">  <!-- Grid row -->
       <% @blogs.each do |blog| %>
         <%= render partial: "layouts/blog_card", locals: { blog: blog } %>
       <% end %>

@@ -11,9 +11,9 @@
   </div> <!-- Featured image -->
 
   <a href="#!" class="red-text">
-    <h6 class="font-weight-bold">
-      <% blog.subcategories.each do |sub| %>
-        <%= link_to sub.title, subcategory_path(sub.id) %>
+    <h6 class="font-weight-bold text-center">
+      <% if blog.subcategory %>
+        <%= link_to blog.subcategory.name, subcategory_path(blog.subcategory.id), style: "color: #ec3223" %>
       <% end %>
     </h6>
   </a> <!-- Category -->
@@ -22,15 +22,14 @@
     <h3 class="font-weight-bold mb-0 pb-0"><strong><%= blog.title %></strong></h3>
   <% end %>
   <p class="mb-1"><em>by <%= Spree::User.find(blog.spree_user_id).first_name %> <%= Spree::User.find(blog.spree_user_id).last_name %><% if blog.published_at %>, <%= blog.published_at.strftime("%b %e, %Y") %><% end %></em></p>
-  <p>
-    <strong><%= blog.teaser %></strong>
-    <% if current_spree_user && current_spree_user.admin? %>
-      <br><small>
-        <%= link_to 'Edit', edit_blog_path(blog) %>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <%= link_to 'Delete', blog_path(blog), method: :delete, data: { confirm: 'Are you sure you want to delete that blog?'} %>
-      </small>
-    <% end %>
-  </p>
+  <p class="mb-0"><strong><%= blog.teaser %></strong></p>
+  <% if current_spree_user && current_spree_user.admin? %>
+    <p class="text-center"><small>
+      <%= link_to 'Edit', edit_blog_path(blog) %>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <%= link_to 'Delete', blog_path(blog), method: :delete, data: { confirm: 'Are you sure you want to delete that blog?'} %>
+    </small></p>
+  <% end %>
+
 
 </div> <!-- Grid column -->

@@ -25,17 +25,16 @@
     </div>
 
     <div class="field">
-      <label>Subcategories</label>
-      <% if Subcategory.where(active: true).count != 0 %>
-        <% Subcategory.all.each do |sub| %>
-          <div class="form-check col-sm-6 col-md-4 subCheck">
-              <input type="checkbox" value="<%= sub.id %>" class="form-check-input" id="blog_subcategory_ids_<%= sub.id %>" name="blog[subcategory_ids][]">
-              <label class="form-check-label" style="text-decoration: none; font-weight: 400" for="blog_subcategory_ids_<%= sub.id %>"><%= sub.name %></label>
-          </div>
-        <% end %>
-      <% else %>
-        <p>You should probably <%= link_to "add a subcategory", new_subcategory_path %>, huh?</p>
+      <label>Subcategory</label>
+      <% subcategory_collection = [] %>
+      <% Subcategory.where(active: true).each do |sub| %>
+        <% subcategory_collection << ["#{sub.name}", "#{sub.id}"] %>
       <% end %>
+      <div class="row text-left">
+        <div class="form-group col-12">
+          <%= form.collection_select(:subcategory_id, Subcategory.where(active: true), :id, :name, prompt: true) %>
+        </div>
+      </div> <!-- row -->
     </div>
 
     <div class="field">
