@@ -44,7 +44,6 @@
       <%= link_to 'Back to Blog', blogs_path, class: "btn thin blue row" %>
       <% if current_spree_user && current_spree_user.admin? %>
         <%= link_to 'Edit Blog', edit_blog_path(@blog), class: "btn thin blue row" %>
-        <%= link_to 'Resource Index', admin_resources_path, class: "btn thin blue row" %>
       <% end %>
     </section>
 
