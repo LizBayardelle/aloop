@@ -56,7 +56,7 @@
   <section class="row py-5 background-white shadow-top bottom-shadow">
   	<div class="container">
   		<h2 class="text-center"><%= @latest_blog.title %></h2>
-      <%= @latest_blog.body.html_safe %>
+      <div id="blog-body"><%= @latest_blog.body.html_safe %></div>
       <div class="text-center">
         <%= link_to "More from the Blog", blogs_path, class: "btn cta" %>
       </div>
