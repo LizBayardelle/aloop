@@ -69,11 +69,11 @@
 
 
 
+    <% if @blog.video_url != "" %>
     <section class="container text-center pb-4 pt-2">
-      <% if @blog.video_url != "" %>
         <%= @blog.video_url.html_safe %>
-      <% end %>
     </section>
+    <% end %>
 
 
     <section class="container pb-4 pt-2">
