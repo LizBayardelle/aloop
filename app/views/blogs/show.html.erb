@@ -58,9 +58,11 @@
           <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn">
             <%= @blog.teaser %>
           </h4>
-          <h5 class="text-center font-weight-bold">
-            <%= link_to @blog.subcategory.name, subcategory_path(@blog.subcategory) %>
-          </h5>
+          <% if @blog.subcategory %>
+            <h5 class="text-center font-weight-bold">
+              <%= link_to @blog.subcategory.name, subcategory_path(@blog.subcategory) %>
+            </h5>
+          <% end %>
         </div> <!-- col -->
       </div> <!-- row -->
     </section> <!-- container -->
