@@ -26,7 +26,7 @@
               <th>Title</th>
               <th>Published</th>
               <th>Author</th>
-              <th>Subcategories</th>
+              <th>Subcategory</th>
               <th>Video</th>
             </tr>
           </thead>
@@ -44,7 +44,7 @@
 
                 <td><% if blog.published %><%= blog.published_at.strftime("%b %e, %Y") %><% else %>No<% end %></td>
 
-                <td><%#= blog.user.first_name %> <%#= blog.user.last_name %></td>
+                <td><%= Spree::User.find(blog.spree_user_id).first_name %> <%= Spree::User.find(blog.spree_user_id).last_name %></td>
                 <td>
                   <% if blog.subcategory %>
                     <%= link_to Subcategory.find(blog.subcategory_id).name, Subcategory.find(blog.subcategory_id) %><br>
