@@ -46,8 +46,8 @@
 
                 <td><%#= blog.user.first_name %> <%#= blog.user.last_name %></td>
                 <td>
-                  <% blog.subcategory_ids.each do |id| %>
-                    <%= link_to Subcategory.find(id).name, Subcategory.find(id) %><br>
+                  <% if blog.subcategory %>
+                    <%= link_to Subcategory.find(blog.subcategory_id).name, Subcategory.find(blog.subcategory_id) %><br>
                   <% end %>
                 </td>
                 <td class="text-center"><% if blog.video_url != "" %>✔<% end %></td>
