@@ -7,6 +7,7 @@
         <div id="product-images" data-hook="product_images">
           <div id="main-image" class="card  " data-hook>
             <div class="card-body text-center">
+              <% puts @product.name %>
               <% if @product %>
                 <%= image_tag(main_app.url_for(@product.images.first.attachment.variant(resize: '1200x1200')), style: "width: 100%") %>
               <% end %>
